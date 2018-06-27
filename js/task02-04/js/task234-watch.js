@@ -1,9 +1,15 @@
-
-
+$(function(){
 //返回至玩家配比页面
-function backto(){
+$("header img:first").click(function(){
   window.location.href = "../html/task234-peibi.html";
-}
+});
+//结束游戏确认框
+$("header img:last").click(function(){
+  var r=confirm("结束本轮游戏吗?");
+  if (r==true){
+    window.location.href = "../html/task234-01.html";
+  }
+});
 //"key"可以理解为密钥,拿着这把密钥就可以打开存储在浏览器本地的数据
 var num = sessionStorage.getItem("key1"); 
 var text = sessionStorage.getItem("key2"); 
@@ -74,7 +80,5 @@ document.getElementById('watch').onclick=function (){
   else {
     window.location.href = "../html/task234-riji.html";
   }
-}        
-
-
-
+}
+})
