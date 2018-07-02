@@ -22,6 +22,7 @@ $col-3 :#fbb435;    //页面调性次颜色
 .fcc{display: flex;justify-content: center;align-items: center;}
 
 ::-webkit-scrollbar {display: none;}    //隐藏滚动条
+
 img { transform: scale(0.5);}    //插入图片统一缩放:0.5
 
 /* 全局样式 */  
@@ -29,6 +30,7 @@ html {
   font-size: 625%;
   overflow-x: hidden; 
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -36,4 +38,5 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
 }

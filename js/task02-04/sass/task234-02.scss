@@ -57,15 +57,10 @@ main {
     }
 }
 
-.grid-container {
-    display: grid;
-    grid-template:repeat(4,1fr)/repeat(3,1fr)
-}
-
 .box-content {
     display: inline-block;
-    width: calc(70vw / 3);
-    height: calc(70vw / 3);
+    width: calc(70vw / 3 + 5px);
+    height: calc(70vw / 3 + 5px);
     margin: calc(5vw - 6px);
     border: 3px #ffffff solid;
 

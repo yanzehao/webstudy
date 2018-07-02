@@ -47,6 +47,9 @@ main{
       text-align: center;
       letter-spacing: .10rem;
       color: #999999;
+      >img{
+        transform: scale(1);
+      }
     }
   }
   >p:last-of-type {

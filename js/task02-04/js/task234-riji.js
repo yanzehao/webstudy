@@ -1,3 +1,19 @@
+$(function(){
+//跳转至玩家配比页面
+$("header img:first").click(function(){
+    window.location.href = "../html/task234-watch.html";
+});
+//结束游戏确认框
+$("header img:last").click(function(){
+  var r=confirm("结束本轮游戏吗?");
+  if (r==true){
+    window.location.href = "../html/task234-01.html";
+  }
+});
+//开始游戏按钮
+$("footer").click(function(){
+  window.location.href = "../html/task234-taiben.html";
+});
 //跳转至法官台本页面
 document.getElementsByTagName('footer')[0].onclick=function (){
   window.location.href = "../html/task234-taiben.html";
@@ -21,3 +37,5 @@ for(i=0;i<num;i++){
 }
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
+//别挡道
+})

@@ -34,15 +34,48 @@ main{
     background: #ffffff;
 }
 .aside{
+    position: relative;
     float: left;
     width: .50rem;
-    height: 2rem;
+    height: 2.48rem;
     border-right: 1px #e3e3e3 solid;
+    >img{background: #ffffff;}
+    img:first-of-type{position: absolute;top: .23rem;left: .20rem;}
+    img:last-of-type{position: absolute;top: .69rem;left: .20rem;}
 }
+
+
+
 .talk{
-    width: 100%;
+    margin-left: .50rem;
+    padding: .24rem;
     height: 2rem;
+
 }
+//法官台本文字说明
+.taiben{
+    position: relative;
+    margin: .10rem 0;
+    line-height: .36rem;
+    text-align: center;
+    color: #ffffff;
+    background: #29bde0;
+}
+//小三角形
+.trans {
+    display: inline-block;
+    position: absolute;
+    left: -.07rem;
+    top: .11rem;
+    width: 0;
+    height: 0;
+    border-top: .07rem solid transparent;
+    border-bottom: .07rem solid transparent;
+    border-right: .07rem solid #29bde0;
+}
+//jQuery添加的类
+.talkp {background: #999999; }
+.talka {border-right: .07rem solid #999999; }
 /* 页脚 */
 footer {
     position: fixed;

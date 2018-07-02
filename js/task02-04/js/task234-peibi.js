@@ -43,7 +43,6 @@ set.onclick = function set() {
     allplayer[all] = temp;
     allplayerText[all] = tempText;
   }
-  
   //输出杀手和平民数组到HTML,并取消分隔符
   document.getElementsByTagName("ul")[0].innerHTML = allplayer.join("");
   //本地存储/存入变量
