@@ -21,9 +21,11 @@ var num = sessionStorage.getItem("key1");
 var text = sessionStorage.getItem("key2");
 //将玩家身份还原为对象(数组 )
 var text1 = JSON.parse(text);
+//选取被杀死的平民编号
+var killed = sessionStorage.getItem("key3");
 console.log(num);
 console.log(text1);
-
+console.log(killed);
 
 //有限状态机,包含每天的四个步骤的状态
 var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一个构造函数,初始化这个状态机)
@@ -40,18 +42,23 @@ var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一
   // 每个事件对应的方法
   methods: {
     onStep1: function () {
-      
+      console.log('当前状态:'+fsm.state);
+    },
+    onAfterStep1: function () {
+      $(".taiben").eq(0).after('<p>' + killed + '号被杀手杀死，他的身份是' + text1[killed] + '</p>');
+      console.log('当前状态:'+fsm.state);
     },
     onStep2: function () {
-      
+      console.log('当前状态:'+fsm.state);
     },
     onStep3: function () {
-      
+      console.log('当前状态:'+fsm.state);
     },
     onStep4: function () {
-      
+      console.log('当前状态:'+fsm.state);
     },
     onAfterStep4: function () {//在
+      console.log('当前状态:'+fsm.state);
       //清除当前的本地存储信息
       // sessionStorage.removeItem("gameother");
       // sessionStorage.removeItem("game");
@@ -65,13 +72,15 @@ var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一
 var i = $(".talk>p").index($(this));
 //为"杀手杀人"添加点击事件
 $(".talk>p").eq(0).click(function () {
-
+  if (fsm.state == 1){
+    alert("请进行下一步游戏!");
+  }
   fsm.step1();//转换到"杀手杀人"状态的方法
   var r=confirm("进入杀人环节！");
   if (r==true){
     $(".talk>p").eq(0).addClass("talkp");
     $(".trans").eq(0).addClass("talka");
-    // window.location.href = "../html/task234-02.html";
+    window.location.href = "../html/task234-02.html";
   }
   // window.location.href = "../html/task234-02.html";
   // window.sessionStorage.setItem('game', '1');
@@ -79,13 +88,16 @@ $(".talk>p").eq(0).click(function () {
 });
 //为"亡灵发表遗言"添加点击事件
 $(".talk>p").eq(1).click(function () {
-  if (fsm.is(2) == true){
-    alert("请进行下一步游戏");
+  if (fsm.state == 2){
+    alert("请进行下一步游戏!");
   }
-  if (fsm.is(1) == false){
-    alert("请按顺序游戏");
-  };
   fsm.step2();//转换到"亡灵发表遗言"状态的方法
+  // if (fsm.is(2) == true){
+  //   alert("请进行下一步游戏");
+  // };
+  // if (fsm.is(2) == false){
+  //   alert("请按顺序游戏");
+  // };
   // window.sessionStorage.setItem('game', "2");
   // window.sessionStorage.setItem('gameother', "2");
   var r=confirm("亡灵发表遗言！");
@@ -101,6 +113,9 @@ $(".talk>p").eq(1).click(function () {
 // })
 //为"玩家发言"添加点击事件
 $(".talk>p").eq(2).click(function () {
+  if (fsm.state == 3){
+    alert("请进行下一步游戏!");
+  }
   fsm.step3();//转换到"玩家发言"状态的方法
   // window.sessionStorage.setItem('game', "3");
   // window.sessionStorage.setItem('gameother', "3");
@@ -111,6 +126,9 @@ $(".talk>p").eq(2).click(function () {
 })
 //为"玩家投票"添加点击事件
 $(".talk>p").eq(3).click(function () {
+  if (fsm.state == 4){
+    alert("请进行下一步游戏!");
+  }
   fsm.step4();//转换到"玩家投票"状态的方法
   // window.sessionStorage.setItem('game', "4");
   var r=confirm("进入投票环节！");
@@ -119,8 +137,6 @@ $(".talk>p").eq(3).click(function () {
   }
   // window.location.href = "../html/task234-02.html";
 })
-
-
 // 判断流程状态，存储状态并在跳转页面之后返回另一个值实现    
 // var gameother = window.sessionStorage.getItem("gameother");
 // console.log(gameother);

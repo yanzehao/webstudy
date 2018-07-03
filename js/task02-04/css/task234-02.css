@@ -91,6 +91,10 @@ header {
   color: #ffffff;
   font-size: .17rem; }
 
+img:first-child {
+  position: relative;
+  bottom: 1rem; }
+
 main {
   position: fixed;
   top: .40rem;
@@ -146,10 +150,12 @@ main {
     background: #83b09a; }
   .box-content .tag {
     display: none;
-    width: 100%;
     transform: scale(1);
+    zoom: 1;
     position: relative;
-    top: 1.5vw; }
+    top: 1.5vw;
+    left: calc(70vw / 6 - 2vw);
+    height: calc(5vw); }
   .box-content:hover img {
     display: block; }
 

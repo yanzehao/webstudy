@@ -15,6 +15,8 @@ header {
     color: #ffffff;
     font-size: .17rem;
 }
+// 这个图片飞向太空了!!!
+img:first-child {position: relative;bottom: 1rem;}
 
 main {
     position: fixed;
@@ -83,10 +85,12 @@ main {
     }
     .tag {
         display: none;
-        width: 100%;
         transform: scale(1);
+        zoom: 1;
         position: relative;
         top: 1.5vw;
+        left:calc(70vw / 6 - 2vw);
+        height: calc(5vw);
     }
     &:hover img {display: block;}
 }
@@ -100,14 +104,12 @@ footer {
     height: 1rem;
     width: 100%;
     background: #29bde0;
-
     a {
         text-align: center;
         width: 80%;
         height: .45rem;
         font-size: .20rem;
         background: #fbb435;
-
         span {
             color: #ffffff;
             line-height: .45rem;
