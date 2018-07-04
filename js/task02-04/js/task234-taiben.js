@@ -41,27 +41,30 @@ var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一
   ],
   // 每个事件对应的方法
   methods: {
-    onStep1: function () {
-      console.log('当前状态:'+fsm.state);
-    },
     onAfterStep1: function () {
-      $(".taiben").eq(0).after('<p>' + killed + '号被杀手杀死，他的身份是' + text1[killed] + '</p>');
+      $(".talk>p").eq(0).addClass("talkp");
+      $(".trans").eq(0).addClass("talka");
+      $(".taiben").eq(0).after('<span>' + killed + '号被杀手杀死，他的身份是' + text1[killed] + '</span>');
       console.log('当前状态:'+fsm.state);
     },
     onStep2: function () {
+      $(".talk>p").eq(1).addClass('talkp');
+      $(".trans").eq(1).addClass('talka');
       console.log('当前状态:'+fsm.state);
     },
     onStep3: function () {
+      $(".talk>p").eq(2).addClass('talkp');
       console.log('当前状态:'+fsm.state);
     },
     onStep4: function () {
+      $(".talk>p").eq(3).addClass('talkp');
+      $(".taiben").eq(3).after('<span>' + killed + '号被杀手杀死，他的身份是' + text1[killed] + '</span>');
       console.log('当前状态:'+fsm.state);
     },
     onAfterStep4: function () {//在
       console.log('当前状态:'+fsm.state);
       //清除当前的本地存储信息
-      // sessionStorage.removeItem("gameother");
-      // sessionStorage.removeItem("game");
+      sessionStorage.removeItem("game");
       //重新加载当前文档
       window.location.reload();
     }
@@ -72,91 +75,70 @@ var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一
 var i = $(".talk>p").index($(this));
 //为"杀手杀人"添加点击事件
 $(".talk>p").eq(0).click(function () {
-  if (fsm.state == 1){
-    alert("请进行下一步游戏!");
-  }
-  fsm.step1();//转换到"杀手杀人"状态的方法
   var r=confirm("进入杀人环节！");
   if (r==true){
-    $(".talk>p").eq(0).addClass("talkp");
-    $(".trans").eq(0).addClass("talka");
+    fsm.step1();//转换到"杀手杀人"状态的方法
+    window.sessionStorage.setItem('game', '1');
     window.location.href = "../html/task234-02.html";
   }
-  // window.location.href = "../html/task234-02.html";
-  // window.sessionStorage.setItem('game', '1');
-  // window.sessionStorage.getItem('gameother');
 });
 //为"亡灵发表遗言"添加点击事件
 $(".talk>p").eq(1).click(function () {
   if (fsm.state == 2){
     alert("请进行下一步游戏!");
   }
-  fsm.step2();//转换到"亡灵发表遗言"状态的方法
-  // if (fsm.is(2) == true){
-  //   alert("请进行下一步游戏");
-  // };
-  // if (fsm.is(2) == false){
-  //   alert("请按顺序游戏");
-  // };
-  // window.sessionStorage.setItem('game', "2");
-  // window.sessionStorage.setItem('gameother', "2");
-  var r=confirm("亡灵发表遗言！");
-  if (r==true){
-    $(".talk>p").eq(1).addClass('talkp');
-    $(".trans").eq(1).addClass('talka');
-  };
+  else{
+    var r=confirm("亡灵发表遗言！");
+    if (r==true){
+      fsm.step2();//转换到"亡灵发表遗言"状态的方法
+      window.sessionStorage.setItem('game', "2");
+    };
+  }
+
 })
-// $(".talk>p").eq(1).click(function () {
-//   if (fsm.is(1) == false){
-//     alert("请按顺序游戏");
-//   };
-// })
 //为"玩家发言"添加点击事件
 $(".talk>p").eq(2).click(function () {
   if (fsm.state == 3){
     alert("请进行下一步游戏!");
   }
-  fsm.step3();//转换到"玩家发言"状态的方法
-  // window.sessionStorage.setItem('game', "3");
-  // window.sessionStorage.setItem('gameother', "3");
   var r=confirm("玩家依次发言！");
   if (r==true){
-    $(".talk>p").eq(2).addClass('talkp');
+    fsm.step3();//转换到"玩家发言"状态的方法
+    window.sessionStorage.setItem('game', "3");
   }
+
 })
 //为"玩家投票"添加点击事件
 $(".talk>p").eq(3).click(function () {
   if (fsm.state == 4){
     alert("请进行下一步游戏!");
   }
-  fsm.step4();//转换到"玩家投票"状态的方法
-  // window.sessionStorage.setItem('game', "4");
   var r=confirm("进入投票环节！");
   if (r==true){
-    $(".talk>p").eq(3).addClass('talkp');
+    fsm.step4();//转换到"玩家投票"状态的方法
+    window.sessionStorage.setItem('game', "4");
   }
   // window.location.href = "../html/task234-02.html";
 })
-// 判断流程状态，存储状态并在跳转页面之后返回另一个值实现    
-// var gameother = window.sessionStorage.getItem("gameother");
-// console.log(gameother);
-// if (gameother == "1") {
-//   fsm.step1();
-// } else if (gameother == "2") {
-//   fsm.step1();
-//   fsm.step2();
-// } else if (gameother == "3") {
-//   fsm.step1();
-//   fsm.step2();
-//   fsm.step3();
-// } else if (gameother == "4") {
-//   fsm.step1();
-//   fsm.step2();
-//   fsm.step3();
-//   fsm.step4();
-// } else {
-//   fsm.reset();
-// }
-
+//判断流程状态，存储状态并在跳转页面之后返回另一个值实现    
+var game = window.sessionStorage.getItem("game");
+console.log(game);
+if (game == "1") {
+  fsm.step1();
+} else if (game == "2") {
+  fsm.step1();
+  fsm.step2();
+} else if (game == "3") {
+  fsm.step1();
+  fsm.step2();
+  fsm.step3();
+} else if (game == "4") {
+  fsm.step1();
+  fsm.step2();
+  fsm.step3();
+  fsm.step4();
+} else {
+  fsm.reset();
+}
 //别挡道
 })

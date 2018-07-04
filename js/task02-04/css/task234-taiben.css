@@ -124,6 +124,11 @@ main {
     top: .69rem;
     left: .20rem; }
 
+#dwei {
+  position: absolute;
+  top: .95rem;
+  left: .20rem; }
+
 .talk {
   margin-left: .50rem;
   padding: .24rem;
