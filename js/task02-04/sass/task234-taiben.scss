@@ -33,24 +33,11 @@ main{
     margin: .05rem;
     background: #ffffff;
 }
-.aside{
-    position: relative;
-    float: left;
-    width: .50rem;
-    height: 2.48rem;
-    border-right: 1px #e3e3e3 solid;
-    >img{background: #ffffff;}
-    img:first-of-type{position: absolute;top: .23rem;left: .20rem;}
-    img:last-of-type{position: absolute;top: .69rem;left: .20rem;}
-}
-
-#dwei{position: absolute;top: .95rem;left: .20rem;}
 
 .talk{
     margin-left: .50rem;
-    padding: .24rem;
-    height: 2rem;
-
+    padding: .12rem .24rem;
+    border-left: 1px #e3e3e3 solid;
 }
 //法官台本文字说明
 .taiben{
@@ -60,6 +47,13 @@ main{
     text-align: center;
     color: #ffffff;
     background: #29bde0;
+}
+//白天黑夜图标
+.icon{
+    position: absolute;
+    left: -.55rem;
+    top: -.11rem;
+    background: #ffffff;
 }
 //小三角形
 .trans {

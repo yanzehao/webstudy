@@ -21,6 +21,9 @@ var text = sessionStorage.getItem("key2");
 //将玩家身份还原为对象(数组 )
 var text1 = JSON.parse(text);
 console.log(text1);
+//选取被杀死的平民编号
+var killed = sessionStorage.getItem("key3");
+console.log(killed);
 //法官查看身份页面,展示所有身份
 var box = Array(num);
 for(i=0;i<num;i++){
@@ -33,24 +36,28 @@ for(i=0;i<num;i++){
 }
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
-
-// var index = $(".box-name").index(this);
-// alert(index);
-
+//指定被杀玩家的默认状态(背景颜色为灰色)
+$(".box-name").eq(killed-1).css("background","#999999");
+//点击投票
 $('.box-name').click(function(){
+  //获取当前玩家的索引
   var index = $(".box-name").index(this);
-
-  if (text1[index]=="杀手"){
-    alert("不能搞自己人啊!");
+  //本地存储/存入变量/选取被投票投死的玩家
+  sessionStorage.setItem("key4", index+1);
+  //先重置背景颜色
+  $('.box-name').css("background","#f5c97b");
+  //然后指定被杀玩家的默认状态(背景颜色为灰色)
+  $(".box-name").eq(killed-1).css("background","#999999");
+  //判断选取的玩家是否死亡
+  if ( index == (killed-1)){
+    alert("无法对已死亡玩家进行投票!")
   }
   else{
-    //先重置背景颜色
-    $('.box-name').css("background","#f5c97b");
     //再指定当前点击的div的背景颜色
     $(this).css("background","#999999");
-    //本地存储/存入变量/选取被杀死的平民编号
-    sessionStorage.setItem("key3", index+1);
-    console.log(index+1);
+    console.log(index);
+    
+    
   }
 })
 //别挡道

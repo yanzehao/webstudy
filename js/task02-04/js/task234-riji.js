@@ -25,6 +25,13 @@ var text = sessionStorage.getItem("key2");
 //将玩家身份还原为对象(数组 )
 var text1 = JSON.parse(text);
 console.log(text1);
+//获取被杀手杀死的平民编号
+var killed = sessionStorage.getItem("key3");
+console.log(killed);
+//获取被玩家投票投死的玩家索引
+var tousi = sessionStorage.getItem("key4");
+console.log(tousi);
+
 //法官查看身份页面,展示所有身份
 var box = Array(num);
 for(i=0;i<num;i++){
@@ -37,5 +44,11 @@ for(i=0;i<num;i++){
 }
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
+
+//被杀手杀死的平民玩家
+$(".box-name").eq(killed-1).css("background","#999999");
+//被投票致死的幸运玩家
+$(".box-name").eq(tousi-1).css("background","#999999");
+
 //别挡道
 })
