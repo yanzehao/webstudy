@@ -64,6 +64,7 @@ var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一
     onStep4: function () {
       $(".talk>p").eq(3).addClass('talkp');
       $(".taiben").eq(3).after('<span>' + [player] + '号被投票投死，他的身份是' + text1[player-1] + '</span>');
+      $(".content").eq(0).hide();
       window.sessionStorage.setItem('game', "4");
       console.log('当前状态:'+fsm.state);
     },
@@ -73,7 +74,7 @@ var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一
       var jiajia = ++ini;
       console.log(jiajia);
       $(".content").eq(0).after('<p>' + '第' + jiajia + '天' + '</p>');
-      $(".content").eq(0).hide();
+      
       //清除当前的本地存储信息
       sessionStorage.removeItem("game");
       
@@ -108,7 +109,7 @@ $(".talk>p").eq(3).click(function () {
 $("main>p").eq(0).click(function(){
   $(".content").eq(0).toggle(200);
 });
-//判断流程状态，存储状态并在跳转页面之后返回另一个值实现    
+//判断流程状态，存储状态并在跳转页面之后返回另一个值实现
 var game = window.sessionStorage.getItem("game");
 console.log(game);
 if (game == "1") {
