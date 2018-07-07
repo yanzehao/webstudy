@@ -45,11 +45,14 @@ set.onclick = function set() {
   }
   //输出杀手和平民数组到HTML,并取消分隔符
   document.getElementsByTagName("ul")[0].innerHTML = allplayer.join("");
-  //本地存储/存入变量
+  //本地存储/存入玩家人数
   sessionStorage.setItem("key1", txt2.value);
+  console.log("玩家总数:"+txt2.value);
+  //本地存储/存入玩家身份
   var strtext=JSON.stringify(allplayerText);
   sessionStorage.setItem("key2", strtext);
   console.log(strtext);
+
   
 }
 //当输入框数字修改时,滑动块也跟着改变;

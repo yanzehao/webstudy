@@ -56,8 +56,6 @@ $('.box-name').click(function(){
     //再指定当前点击的div的背景颜色
     $(this).css("background","#999999");
     console.log(index);
-    
-    
   }
 })
 //别挡道

@@ -16,10 +16,12 @@ header {
     color: #ffffff;
     font-size: .17rem;
     background: #29bde0;
+    z-index: 9999;
 }
 /* 内容主体 */
 main{
     margin-top: .45rem;
+    margin-bottom: .65rem;
     >p{
         @extend .content;
         line-height: .40rem;
@@ -29,6 +31,7 @@ main{
     }
 }
 .content{
+    position: relative;
     border: 1px #e3e3e3 solid;
     margin: .05rem;
     background: #ffffff;
@@ -55,7 +58,7 @@ main{
     top: -.11rem;
     background: #ffffff;
 }
-//小三角形
+//小三角形(左)
 .trans {
     display: inline-block;
     position: absolute;
@@ -66,6 +69,18 @@ main{
     border-top: .07rem solid transparent;
     border-bottom: .07rem solid transparent;
     border-right: .07rem solid #29bde0;
+}
+//小三角形(上)
+.thisday {
+    display: inline-block;
+    position: absolute;
+    left: calc(50% - .07rem);
+    top: -.07rem;
+    width: 0;
+    height: 0;
+    border-bottom: .07rem solid #ffffff;
+    border-right: .07rem solid transparent;
+    border-left: .07rem solid transparent;
 }
 //jQuery添加的类
 .talkp {background: #999999; }

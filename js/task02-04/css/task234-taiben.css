@@ -91,11 +91,13 @@ header {
   width: 100%;
   color: #ffffff;
   font-size: .17rem;
-  background: #29bde0; }
+  background: #29bde0;
+  z-index: 9999; }
 
 /* 内容主体 */
 main {
-  margin-top: .45rem; }
+  margin-top: .45rem;
+  margin-bottom: .65rem; }
   main > p {
     line-height: .40rem;
     text-align: center;
@@ -103,6 +105,7 @@ main {
     color: #29bde0; }
 
 .content, main > p {
+  position: relative;
   border: 1px #e3e3e3 solid;
   margin: .05rem;
   background: #ffffff; }
@@ -136,6 +139,17 @@ main {
   border-top: .07rem solid transparent;
   border-bottom: .07rem solid transparent;
   border-right: .07rem solid #29bde0; }
+
+.thisday {
+  display: inline-block;
+  position: absolute;
+  left: calc(50% - .07rem);
+  top: -.07rem;
+  width: 0;
+  height: 0;
+  border-bottom: .07rem solid #ffffff;
+  border-right: .07rem solid transparent;
+  border-left: .07rem solid transparent; }
 
 .talkp {
   background: #999999; }
