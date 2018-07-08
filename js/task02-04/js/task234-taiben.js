@@ -64,7 +64,7 @@ sessionStorage.setItem("ping",pingstr);
 //--------------------------------------
 
 
-
+//sdasd
 //有限状态机,包含每天的四个步骤的状态
 var fsm = new StateMachine({//创建有限状态机(关键词new,表示的是一个构造函数,初始化这个状态机)
   // 设置初始状态

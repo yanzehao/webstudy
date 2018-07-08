@@ -66,12 +66,12 @@ for(i=0;i<(day);i++){
   //被投票致死的幸运玩家
   $(".box-name").eq(tousi-1).css("background","#999999");
 }
-//当变量为空时,默认当0处理,需要规避这种事情
-if (killed==tousi){
-  $(".box-name:last").css("background","#f5c97b");
-}
-if (killed==tousi){
-  $(".box-name:last").css("background","#f5c97b");
-}
+// //当变量为空时,默认当0处理,需要规避这种事情
+// if (killed==tousi){
+//   $(".box-name:last").css("background","#f5c97b");
+// }
+// if (killed==tousi){
+//   $(".box-name:last").css("background","#f5c97b");
+// }
 //别挡道
 })
