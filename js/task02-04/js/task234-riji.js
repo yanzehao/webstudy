@@ -62,16 +62,20 @@ var ping =  JSON.parse(pingstr)
 console.log(ping);
 for(i=0;i<(day);i++){
   //当变量为空时,默认当0处理,需要规避这种事情
-  if (killed==null&&tousi==null){
+  if (killed==null){
     $(".box-name:last").css("background","#f5c97b");
   }
   else{
     //被杀手杀死的平民玩家
     $(".box-name").eq(killed-1).css("background","#999999");
+  }
+  if (tousi==null){
+    $(".box-name:last").css("background","#f5c97b");
+  }
+  else{
     //被投票致死的幸运玩家
     $(".box-name").eq(tousi-1).css("background","#999999");
   }
 }
-
 // 别挡道
 })

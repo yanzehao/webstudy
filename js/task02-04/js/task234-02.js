@@ -49,8 +49,13 @@ $('.box-name').click(function(){
     sessionStorage.setItem("key3", index+1);
     console.log('杀死平民:'+(index+1));
     //获取平民索引数组
-    var pingstr=sessionStorage.getItem("ping")
-    var ping = JSON.parse(pingstr)
+    var pingstr=sessionStorage.getItem("ping");
+    var ping = JSON.parse(pingstr);
+    console.log(ping);
+    ping.splice(index,1)
+    console.log(ping);
+    // //在平民数组中被杀平民的索引
+    // console.log($.inArray(index,ping));
     //存活平民
     ping.splice($.inArray(index,ping),1);
     console.log(ping);
