@@ -31,11 +31,11 @@ for(i=0;i<num;i++){
 }
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
-
-var index;
+//点击玩家角色事件
 $('.box-name').click(function(){
   //获取当前选中的玩家索引
   index = $(".box-name").index(this);
+  sessionStorage.setItem("pnum",index);
   console.log("当前玩家索引:"+index);
   if (text1[index]=="杀手"){
     alert("不能搞自己人啊!");
@@ -52,15 +52,23 @@ $('.box-name').click(function(){
     var pingstr=sessionStorage.getItem("ping");
     var ping = JSON.parse(pingstr);
     console.log(ping);
-    ping.splice(index,1)
-    console.log(ping);
-    // //在平民数组中被杀平民的索引
-    // console.log($.inArray(index,ping));
-    //存活平民
-    ping.splice($.inArray(index,ping),1);
-    console.log(ping);
-    // //曾经被杀手杀死的平民玩家
-    // $(".box-name").eq(killed-1).css("background","#999999");
+    for (i=0;i<day;i++){
+      if(index==ping[i])
+      //删除平民玩家索引数组中的索引元素
+      ping.splice($.inArray(index,ping),1);
+      console.log(ping);
+      console.log(ping.length);
+      // if(ping.length==0){
+      //   window.location.href = "../html/task234-03.html"
+    }
+    // }
+
+    // //删除平民玩家的索引
+    // ping.splice(index,1)
+    // console.log(ping);
+    // //删除平民玩家索引数组中的索引元素
+    // ping.splice($.inArray(index,ping),1);
+    // console.log(ping);
   }
 })
 //确定游戏按钮

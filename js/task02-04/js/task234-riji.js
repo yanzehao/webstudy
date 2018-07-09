@@ -62,7 +62,7 @@ var ping =  JSON.parse(pingstr)
 console.log(ping);
 for(i=0;i<(day);i++){
   //当变量为空时,默认当0处理,需要规避这种事情
-  if (killed==null){
+  if (killed==null){  
     $(".box-name:last").css("background","#f5c97b");
   }
   else{

@@ -30,8 +30,8 @@ var player = sessionStorage.getItem("key4")
 console.log(text1 );
 console.log('被杀平民:'+killed);
 console.log('投死玩家:'+player);
-//获取游戏天数
-var day = sessionStorage.getItem("someday")//赋值给变量day的是一个空对象指针(只有关键字,没有具体的值)
+//获取游戏天数,赋值给变量day的是一个空对象指针(只有关键字,没有具体的值)
+var day = sessionStorage.getItem("someday")
 console.log('游戏天数:'+day);//返回值为 "null"
 if(day == null){ //初始天数为1
   var day=1;
@@ -60,6 +60,17 @@ sessionStorage.setItem("sha",shastr);
 var pingstr =JSON.stringify(ping);
 //将平民数组以字符串的形式进行本地存储
 sessionStorage.setItem("ping",pingstr);
+
+var pnum = sessionStorage.getItem("pnum")
+for (i=0;i<ping.length;i++){
+  if(pnum==ping[i]){
+    
+  }
+  // //删除平民玩家索引数组中的索引元素
+  // ping.splice($.inArray(index,ping),1);
+  // console.log(ping);
+  // console.log(ping.length);
+}
 
 //--------------------------------------
 
