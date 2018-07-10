@@ -56,6 +56,8 @@ $('.box-name').click(function(){
     //平民索引
     var x = $.inArray(index,ping);
     for(i=0;i<day;i++){
+      var long = ping.length-i;
+      var onping = Array(long)
       if(index in ping[ping.length-i]){}
       //存活的平民
       var live = ping;
