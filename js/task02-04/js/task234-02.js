@@ -56,8 +56,8 @@ $('.box-name').click(function(){
     //平民索引
     var x = $.inArray(index,ping);
     for(i=0;i<day;i++){
+      if(index in ping[ping.length-i]){}
       //存活的平民
-      var live = Array(ping.length-i)
       var live = ping;
       live.splice(x,1);
       console.log(live);
@@ -65,7 +65,6 @@ $('.box-name').click(function(){
       var dead1 = [];
       dead1.push(index);
       console.log(dead1);
-      console.log(dead1.length);
 
     }
 
