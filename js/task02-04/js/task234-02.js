@@ -58,11 +58,15 @@ $('.box-name').click(function(){
     for(i=0;i<day;i++){
       var long = ping.length-i;
       var onping = Array(long)
-      if(index in ping[ping.length-i]){}
-      //存活的平民
-      var live = ping;
-      live.splice(x,1);
-      console.log(live);
+      if(a=0;a<(ping.length-i);a++){
+        if(index in ping){
+          //存活的平民
+          var live = ping;
+          live.splice(x,1);
+          console.log(live);
+        }
+      }
+
       //死亡平民
       var dead1 = [];
       dead1.push(index);
