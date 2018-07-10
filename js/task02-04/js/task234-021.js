@@ -36,26 +36,69 @@ for(i=0;i<num;i++){
 }
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
+//----------------------------------------------------------------------------------------------------
+//点击玩家角色事件
+$('.box-name').click(function(){
+  //获取当前选中的玩家索引
+  index = $(".box-name").index(this);
+  sessionStorage.setItem("pnum",index);
+  console.log("当前玩家索引:"+index);
+  if (text1[index]=="杀手"){
+    alert("不能搞自己人啊!");
+  }
+  else if(text1[index]=="平民"){
+    //先重置背景颜色
+    $('.box-name').css("background","#f5c97b");
+    //再指定当前点击的div的背景颜色
+    $(this).css("background","#999999");
+    //本地存储/存入变量/选取被杀死的平民编号
+    sessionStorage.setItem("key3", index+1);
+    console.log('杀死平民:'+(index+1));
+    //获取初始平民索引数组
+    var pingstr=sessionStorage.getItem("ping");
+    var ping = JSON.parse(pingstr);
+    console.log(ping);
+    //死亡平民
+    dead=[];
+    dead.push(index);
+    console.log("死亡平民:"+dead);
+    sessionStorage.setItem("ondead",dead)
+    //存活的平民
+    ping.splice($.inArray(index,ping),1);
+    console.log("存活平民:"+ping);
+    sessionStorage.setItem("onping",ping)
+  }
+})
+//确定游戏按钮
+$("footer").click(function(){
+  if(index == undefined){
+    alert("请先带走一位平民!")
+  }
+  else{
+    window.location.href = "../html/task234-taiben.html";
+  }
+});
+//----------------------------------------------------------------------------------------------
 //指定被杀玩家的默认状态(背景颜色为灰色)
-$(".box-name").eq(killed-1).css("background","##83b09a");
+$(".box-name").eq(killed-1).css("background","#999999");
 //点击投票
 $('.box-name').click(function(){
   //获取当前玩家的索引
-  var y = $(".box-name").index(this);
+  var index = $(".box-name").index(this);
   //本地存储/存入变量/选取被投票投死的玩家
-  sessionStorage.setItem("key4", y);
+  sessionStorage.setItem("key4", index+1);
   //先重置背景颜色
   $('.box-name').css("background","#f5c97b");
   //然后指定被杀玩家的默认状态(背景颜色为灰色)
-  $(".box-name").eq(killed-1).css("background","#83b09a");
+  $(".box-name").eq(killed-1).css("background","#999999");
   //判断选取的玩家是否死亡
-  if ( y == x){
+  if ( index == (killed-1)){
     alert("无法对已死亡玩家进行投票!")
   }
   else{
     //再指定当前点击的div的背景颜色
-    $(this).css("background","#83b09a");
-    console.log(y);
+    $(this).css("background","#999999");
+    console.log(index);
   }
 })
 //别挡道

@@ -31,6 +31,7 @@ for(i=0;i<num;i++){
 }
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
+
 //点击玩家角色事件
 $('.box-name').click(function(){
   //获取当前选中的玩家索引
@@ -51,23 +52,16 @@ $('.box-name').click(function(){
     //获取初始平民索引数组
     var pingstr=sessionStorage.getItem("ping");
     var ping = JSON.parse(pingstr);
-    console.log("平民索引数组"+ping);
-    for(i=0;i<day;i++){
-      if(day=1){
-        //死亡平民
-        dead=[];
-        dead.push(index);
-        console.log("死亡平民:"+dead);
-        sessionStorage.setItem("ondead",dead)
-        //存活的平民
-        ping.splice($.inArray(index,ping),1);
-        console.log("存活平民:"+ping);
-        sessionStorage.setItem("onping",ping)
-      }
-      else{
-
-      }
-    }
+    console.log(ping);
+    //死亡平民
+    dead=[];
+    dead.push(index);
+    console.log("死亡平民:"+dead);
+    sessionStorage.setItem("ondead",dead)
+    //存活的平民
+    ping.splice($.inArray(index,ping),1);
+    console.log("存活平民:"+ping);
+    sessionStorage.setItem("onping",ping)
   }
 })
 //确定游戏按钮
