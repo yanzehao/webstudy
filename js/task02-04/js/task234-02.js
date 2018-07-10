@@ -53,15 +53,42 @@ $('.box-name').click(function(){
     var pingstr=sessionStorage.getItem("ping");
     var ping = JSON.parse(pingstr);
     console.log(ping);
-    //死亡平民
-    dead=[];
-    dead.push(index);
-    console.log("死亡平民:"+dead);
-    sessionStorage.setItem("ondead",dead)
-    //存活的平民
-    ping.splice($.inArray(index,ping),1);
-    console.log("存活平民:"+ping);
-    sessionStorage.setItem("onping",ping)
+    //平民索引
+    var x = $.inArray(index,ping);
+    for(i=0;i<day;i++){
+      //存活的平民
+      var live = Array(ping.length-i)
+      var live = ping;
+      live.splice(x,1);
+      console.log(live);
+      //死亡平民
+      var dead1 = [];
+      dead1.push(index);
+      console.log(dead1);
+      console.log(dead1.length);
+
+    }
+
+    //玩家数组乱序输出
+    // for (var i=0;i<txt2.value;i++){
+    //   var all = i + Math.floor( Math.random()*(txt2.value - i));
+    //   var temp = allplayer[i];
+    //   allplayer[i]=allplayer[all];
+    //   allplayer[all] = temp;
+    //   allplayerText[all] = tempText;
+    // }
+
+    // function shuffle(arr) {
+    //   var i, j, temp;
+    //   for (i = arr.length - 1; i > 0; i--) {
+    //       j = Math.floor(Math.random() * (i + 1));
+    //       temp = arr[i];
+    //       arr[i] = arr[j];
+    //       arr[j] = temp;
+    //   }
+    //   return arr;
+    // };
+
   }
 })
 //确定游戏按钮
