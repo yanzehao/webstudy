@@ -37,25 +37,25 @@ for(i=0;i<num;i++){
 document.getElementById('box').innerHTML=box.join("")
 console.log(box);
 //指定被杀玩家的默认状态(背景颜色为灰色)
-$(".box-name").eq(killed-1).css("background","#999999");
+$(".box-name").eq(killed-1).css("background","##83b09a");
 //点击投票
 $('.box-name').click(function(){
   //获取当前玩家的索引
-  var index = $(".box-name").index(this);
+  var y = $(".box-name").index(this);
   //本地存储/存入变量/选取被投票投死的玩家
-  sessionStorage.setItem("key4", index+1);
+  sessionStorage.setItem("key4", y);
   //先重置背景颜色
   $('.box-name').css("background","#f5c97b");
   //然后指定被杀玩家的默认状态(背景颜色为灰色)
-  $(".box-name").eq(killed-1).css("background","#999999");
+  $(".box-name").eq(killed-1).css("background","#83b09a");
   //判断选取的玩家是否死亡
-  if ( index == (killed-1)){
+  if ( y == x){
     alert("无法对已死亡玩家进行投票!")
   }
   else{
     //再指定当前点击的div的背景颜色
-    $(this).css("background","#999999");
-    console.log(index);
+    $(this).css("background","#83b09a");
+    console.log(y);
   }
 })
 //别挡道

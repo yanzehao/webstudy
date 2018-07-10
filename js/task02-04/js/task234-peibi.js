@@ -106,11 +106,28 @@ function backto() {
 txt3.onmousemove= function(){
   //滑动块所在的值距最左边的长度占滑动条总长度的百分比
   var suibian = (txt2.value - 4)/12*100 + '%';
-  
   txt3.style.backgroundSize=suibian ;//给滑动条添加属性(驼峰法)
 }
 //元素上发生鼠标点击时触发。
 txt3.onclick = function(){
+  //滑动块所在的值距最左边的长度占滑动条总长度的百分比
+  var suibian = (txt2.value - 4)/12*100 + '%';
+  txt3.style.backgroundSize=suibian ;//给滑动条添加属性(驼峰法)
+}
+//元素上发生鼠标点击时触发。
+txt3.onmouseup = function(){
+  //滑动块所在的值距最左边的长度占滑动条总长度的百分比
+  var suibian = (txt2.value - 4)/12*100 + '%';
+  txt3.style.backgroundSize=suibian ;//给滑动条添加属性(驼峰法)
+}
+//元素上发生鼠标点击时触发。
+txt3.onmouseup = function(){
+  //滑动块所在的值距最左边的长度占滑动条总长度的百分比
+  var suibian = (txt2.value - 4)/12*100 + '%';
+  txt3.style.backgroundSize=suibian ;//给滑动条添加属性(驼峰法)
+}
+//元素上发生鼠标点击时触发。
+txt3.onmousedown = function(){
   //滑动块所在的值距最左边的长度占滑动条总长度的百分比
   var suibian = (txt2.value - 4)/12*100 + '%';
   txt3.style.backgroundSize=suibian ;//给滑动条添加属性(驼峰法)
