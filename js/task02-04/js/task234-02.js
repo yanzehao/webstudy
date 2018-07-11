@@ -39,7 +39,7 @@ $('.box-name').click(function(){
   sessionStorage.setItem("pnum",index);
   console.log("当前玩家索引:"+index);
   if (text1[index]=="杀手"){
-    alert("不能搞自己人啊!");
+    alert("请选择平民玩家!");
   }
   else if(text1[index]=="平民"){
     //先重置背景颜色
@@ -55,45 +55,33 @@ $('.box-name').click(function(){
     console.log(ping);
     //平民索引
     var x = $.inArray(index,ping);
-    for(i=0;i<day;i++){
-      var long = ping.length-i;
-      var onping = Array(long)
-      if(a=0;a<(ping.length-i);a++){
-        if(index in ping){
-          //存活的平民
-          var live = ping;
-          live.splice(x,1);
-          console.log(live);
-        }
-      }
-
+    if(day=1){
+      //存活的平民
+      ping.splice(x,1);
+      console.log(ping);
       //死亡平民
       var dead1 = [];
       dead1.push(index);
       console.log(dead1);
-
     }
-
-    //玩家数组乱序输出
-    // for (var i=0;i<txt2.value;i++){
-    //   var all = i + Math.floor( Math.random()*(txt2.value - i));
-    //   var temp = allplayer[i];
-    //   allplayer[i]=allplayer[all];
-    //   allplayer[all] = temp;
-    //   allplayerText[all] = tempText;
-    // }
-
-    // function shuffle(arr) {
-    //   var i, j, temp;
-    //   for (i = arr.length - 1; i > 0; i--) {
-    //       j = Math.floor(Math.random() * (i + 1));
-    //       temp = arr[i];
-    //       arr[i] = arr[j];
-    //       arr[j] = temp;
-    //   }
-    //   return arr;
-    // };
-
+    for(i=1;i<day;i++){
+      // var temp = ping[ping.length-i];
+      // ping[ping.length-i]=ping[index];
+      // ping[ping.length-i]=temp;
+      var long = ping.length;
+      ping.length = ping.length-i;
+      console.log(ping.length);
+      if(x in ping){
+        //存活的平民
+        var live = ping;
+        live.splice(x,1);
+        console.log(live);
+        //死亡平民
+        var dead1 = [];
+        dead1.push(index);
+        console.log(dead1);
+      }
+    }
   }
 })
 //确定游戏按钮
