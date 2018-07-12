@@ -1,6 +1,13 @@
 //从sessionStorage中获取数据
 all=JSON.parse(sessionStorage.getItem("all"));
 console.log(all);
+// 取到死亡的杀手数组，做判断的时候要用
+diedKiller=JSON.parse(sessionStorage.getItem("diedKiller"));
+// 创建被处决的杀手数组
+if(diedKiller==null){
+	var diedKiller=[];
+	sessionStorage.setItem("diedKiller",JSON.stringify(diedKiller));
+}
 
 //渲染出标签
 for (var i = 0; i < all.length; i++){
@@ -33,30 +40,44 @@ $(".people").mouseenter(function (){
 	console.log(number);
 	role=$(this).find(".vocation").text();
 	console.log(role);	
-	if(died.indexOf(number) != -1){
-		alert("得饶人处且饶人,请放过死者!");		
-	}
+
 })
 //点击bottom按钮功能
 $(".footer").click(function(){
 	console.log(role);
 	if(role=="杀手"){
-		alert("请不要自相残杀!")
+		died=JSON.parse(sessionStorage.getItem("died"));
+		if(died.indexOf(number)!=-1){
+			alert("得饶人处且饶人,请放过死者!");		
+		}
+		else{
+			alert("请不要自相残杀!")
+		}
 	}
 	if(role=="平民"){
 		var died=JSON.parse(sessionStorage.getItem("died"));
-		if(died==null){
-			var died=[];
-		}
-		died.push(number);
 		console.log(died);
-		sessionStorage.setItem("died",JSON.stringify(died));
-		window.location.href="game.html";
-		// if(role in died){
-		// 	alert("玩家已死无须");
-		// }
-		// $.inArray(number,all);
-
+		if(died==null){
+			died=[];
+			died.push(number);
+			console.log(died);
+			sessionStorage.setItem("died",JSON.stringify(died));
+			window.location.href="game.html";
+		}
+		else{
+			if(died.indexOf(number)!=-1){
+				alert("得饶人处且饶人,请放过死者!");		
+			}
+			else{
+				died.push(number);
+				console.log(died);
+				sessionStorage.setItem("died",JSON.stringify(died));
+				window.location.href="game.html";
+			}
+			if((Math.floor((1/3)*all.length)-diedKiller.length)==0||(Math.floor((1/3)*all.length)-diedKiller.length)==(all.length - (Math.floor((1/3)*all.length))-(died.length-diedKiller.length)) ){
+				window.location.href="result.html";
+			}
+		}
 	}
 	if(role==undefined){
 		alert("请选择你要杀死的玩家!");

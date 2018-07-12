@@ -16,6 +16,14 @@ body {
   background-position: 20.5rem 13rem;
   background-size: 60%;
 }
+.result .win {
+  position: fixed;
+  margin-top: 37rem;
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+  font-size: 6rem;
+}
 .result .top {
   position: relative;
   top: 45rem;

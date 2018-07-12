@@ -59,7 +59,7 @@ $(".footer").click(function(){
 			sessionStorage.setItem("diedKiller",JSON.stringify(diedKiller));
 			console.log(diedKiller);
 		};
-		if((Math.floor((1/3)*all.length)-diedKiller.length)==0||(Math.floor((1/3)*all.length)-diedKiller.length)>=(Math.ceil((2/3)*all.length)-(died.length-diedKiller.length)) ){
+		if((Math.floor((1/3)*all.length)-diedKiller.length)==0||(Math.floor((1/3)*all.length)-diedKiller.length)==(all.length - (Math.floor((1/3)*all.length))-(died.length-diedKiller.length)) ){
 			window.location.href="result.html";
 		}
 		else{
