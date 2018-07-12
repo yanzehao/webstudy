@@ -15,12 +15,12 @@ for( var i=1;i<dayNum+1;i++){
 	if((Math.floor((1/3)*all.length)-diedKiller.length)==(all.length - (Math.floor((1/3)*all.length))-(died.length-diedKiller.length)) ){
 		$(".win").eq(0).text("杀手胜利!")
 	}
-	// if(died[2*(i-1)+1]==undefined){
-	// 	$(".row").eq(i-1).html("第"+i+"天"+"<br>"+"黑夜："+died[2*(i-1)]+"号玩家被杀死，真实身份是平民"+"<br>")
-	// }
-	// else{
+	if(died[2*(i-1)+1]==undefined){
+		$(".row").eq(i-1).html("第"+i+"天"+"<br>"+"黑夜："+died[2*(i-1)]+"号玩家被杀死，真实身份是平民"+"<br>")
+	}
+	else{
 		$(".row").eq(i-1).html("第"+i+"天"+"<br>"+"黑夜："+died[2*(i-1)]+"号玩家被杀死，真实身份是平民"+"<br>"+"白天："+died[2*(i-1)+1]+"号玩家被处决，真实身份是"+votedRole[i-1])
-	// }
+	}
 }
 //回退按钮设置
 function backGame(){
