@@ -96,7 +96,7 @@ a {
   width: 30rem;
   padding: 3rem 2rem;
   margin: 3rem 5rem;
-  background-color: #002FA7;
+  background-color: #fca000;
   border: none;
   border-radius: 2rem;
 }
@@ -105,9 +105,9 @@ a {
   color: #fff;
 }
 .dark {
-  background-color: gainsboro!important;
+  background-color: #999999!important;
 }
 .darkLeft {
   border: 5rem solid transparent;
-  border-right: 5rem solid gainsboro!important;
+  border-right: 5rem solid #999999!important;
 }

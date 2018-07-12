@@ -37,9 +37,7 @@ body {
 }
 .result .date {
   position: relative;
-  width: 96%;
   top: 44rem;
-  margin-left: 2rem;
   font-size: 3.5rem;
   color: #a6a6a6;
   background-color: #fff;

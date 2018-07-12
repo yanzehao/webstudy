@@ -16,10 +16,6 @@ var fsm = new StateMachine({
 			console.log(fsm.state);
 			window.location.href="kill.html";
 		},
-		// onEnterKill: function(){
-		// 	$(".content").eq(0).addClass('dark');
-		// 	$(".triangle-left").eq(0).addClass('darkLeft');
-		// },
 		onTransTwo:function(){
 			var trans2=fsm.state;
 			sessionStorage.setItem("trans2",JSON.stringify(trans2));
@@ -59,7 +55,7 @@ for(i=1;i<day;i++){
 }
 // 已进行的天数默认为折叠状态
 for(i=1;i<day;i++){
-	$(".game").eq(i-1).hide(1000);
+	$(".game").eq(i-1).hide(100);
 }
 // 给已进行的天数的样式渲染
 for(i=4;i<4*day;i++){

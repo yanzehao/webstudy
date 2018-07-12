@@ -17,18 +17,7 @@ for(var i=0;i<all.length;i++){
 		$(".vocation").eq(i).text("平民");
 	}
 }
-// 定义杀人页面的状态机
-// var fsm = new StateMachine({
-// 	init:"none",
-// 	transitions:[
-// 		{name:"ready",from:"none",to:"choose"},
-// 		// {name:"begin",from:"choose",to:"sure"},
-// 	],
-// 	methods:{
-// 		onReady:function(){
-// 		}
-// 	},
-// })
+
 // 获取选择的玩家身份和序号
 var role; //在全局中定义变量role,后面else判断条件才能执行，否者会出现role未定义，执行到if里面的condition的时候就报错，就不会执行到else语句。
 // 对死者渲染样式
@@ -49,7 +38,7 @@ $(".people").mouseenter(function (){
 $(".footer").click(function(){
 	console.log(role);
 	if(role=="杀手"){
-		alert("不是吧，对自己人下黑手！")
+		alert("请不要自相残杀!")
 	}
 	if(role=="平民"){
 		var died=JSON.parse(sessionStorage.getItem("died"));
@@ -62,10 +51,6 @@ $(".footer").click(function(){
 		window.location.href="game.html";
 	}
 	if(role==undefined){
-		alert("杀个人再走吧，兄弟！");
+		alert("请选择你要杀死的玩家!");
 	}
 })
-
-// survivor.length=(2/3)*all.length-(died.length-diedKiller.length);
-// 幸存者人数:survivor.length=(2/3)*all.length-(died.length-diedKiller.length) //总平民人数-死亡的平民人数 
-// diedKiller[]在投票页面，条件判断后放入构成;

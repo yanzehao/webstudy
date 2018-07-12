@@ -23,8 +23,6 @@ for(var i=0;i<all.length;i++){
 		$(".vocation").eq(i).text("平民");
 	}
 }
-// 要加条件判断 只有第一天！ 对$(".people").eq(-1)单独重置样式
-// $(".people").eq(-1).css("opacity","1");
 
 // 对死者渲染样式
 died=JSON.parse(sessionStorage.getItem("died"));
@@ -44,7 +42,7 @@ $(".people").mouseenter(function (){
 //点击bottom按钮功能
 $(".footer").click(function(){
 	if(died.indexOf(number)!=-1){
-		alert("请放过死者：）");		
+		alert("得饶人处且饶人,请放过死者!");		
 	}
 	if((died.indexOf(number)==-1)){
 		died.push(number); //杀人后亡者放入死亡数组
@@ -61,16 +59,11 @@ $(".footer").click(function(){
 			sessionStorage.setItem("diedKiller",JSON.stringify(diedKiller));
 			console.log(diedKiller);
 		};
-		// 健在的杀手人数:survivorKiller.length=Math.floor((1/3)*all.length)-diedKiller.length //杀人总人数-死亡的杀人人数;
-		// 幸存者人数:survivor.length=Math.ceil((2/3)*all.length)-(died.length-diedKiller.length) //总平民人数-死亡的平民人数 
-		// var diedKiller=JSON.parse(sessionStorage.getItem("diedKiller"));
-		// console.log(diedKiller);
 		if((Math.floor((1/3)*all.length)-diedKiller.length)==0||(Math.floor((1/3)*all.length)-diedKiller.length)>=(Math.ceil((2/3)*all.length)-(died.length-diedKiller.length)) ){
 			window.location.href="result.html";
 		}
 		else{
 			day=sessionStorage.getItem("day");
-			// day=JSON.parse(sessionStorage.getItem("day"));
 		    day++; // 如果继续游戏,天数增加;
 		    console.log(day);
 			sessionStorage.setItem("day",day);
