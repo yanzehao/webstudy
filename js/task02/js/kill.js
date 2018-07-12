@@ -33,6 +33,9 @@ $(".people").mouseenter(function (){
 	console.log(number);
 	role=$(this).find(".vocation").text();
 	console.log(role);	
+	if(died.indexOf(number) != -1){
+		alert("得饶人处且饶人,请放过死者!");		
+	}
 })
 //点击bottom按钮功能
 $(".footer").click(function(){
@@ -49,6 +52,11 @@ $(".footer").click(function(){
 		console.log(died);
 		sessionStorage.setItem("died",JSON.stringify(died));
 		window.location.href="game.html";
+		// if(role in died){
+		// 	alert("玩家已死无须");
+		// }
+		// $.inArray(number,all);
+
 	}
 	if(role==undefined){
 		alert("请选择你要杀死的玩家!");

@@ -160,8 +160,11 @@ if(trans4=="vote"){
 }
 //回退按钮设置
 function backGame(){
-	sessionStorage.clear();
-	window.location.href="gameSet.html";
+	if(window.confirm('你确定要退出游戏吗？')){
+		alert("确定");
+		sessionStorage.clear();
+		window.location.href="gameSet.html";
+ }
 } 
 function backHome(){
 	sessionStorage.clear();
