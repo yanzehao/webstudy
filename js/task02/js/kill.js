@@ -26,7 +26,7 @@ for(var i=0;i<all.length;i++){
 }
 
 // 获取选择的玩家身份和序号
-var role; //在全局中定义变量role,后面else判断条件才能执行，否者会出现role未定义，执行到if里面的condition的时候就报错，就不会执行到else语句。
+var role; 
 // 对死者渲染样式
 died=JSON.parse(sessionStorage.getItem("died"));
 console.log(died);

@@ -1,0 +1,44 @@
+html {
+  font-size: 16px;
+  font-size: 625%;
+}
+body {
+  text-align: center;
+  background: url(./images/login.jpg) no-repeat fixed;
+  background-size: cover;
+}
+div {
+  position: relative;
+  margin: calc(50vh - 1rem) .10rem 0 .10rem;
+  padding: .20rem;
+  display: inline-block;
+  color: #999999;
+  background: rgba(153, 153, 153, .5)
+}
+p {
+  text-align: center;
+  color: #03a9f4;
+}
+a {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  line-height: .30rem;
+  color: #ffffff;
+  background: #03a9f4;
+}
+.input{
+  padding: -1rem;
+  padding-left: .30rem;
+  border-radius: 0;
+}
+.word {
+  position: absolute;
+  top: 1.15rem;
+  left: .30rem;
+}
+.name {
+  position: absolute;
+  top: .60rem;
+  left: .30rem;
+}

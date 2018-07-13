@@ -77,4 +77,6 @@ if(sessionStorage.getItem("trans2")!=null&&sessionStorage.getItem("trans3")!=nul
 	sessionStorage.removeItem("trans2");	
 	sessionStorage.removeItem("trans3");	
 	sessionStorage.removeItem("trans4");	
+	
+	
 }
