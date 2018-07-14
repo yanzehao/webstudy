@@ -41,35 +41,41 @@ $(".people").mouseenter(function (){
 })
 //点击bottom按钮功能
 $(".footer").click(function(){
-	if(died.indexOf(number)!=-1){
-		alert("得饶人处且饶人,请放过死者!");		
+	if(role==undefined){
+		alert("请选择一名玩家进行投票!");
 	}
-	if((died.indexOf(number)==-1)){
-		died.push(number); //杀人后亡者放入死亡数组
-		sessionStorage.setItem("died",JSON.stringify(died));
-		var votedRole=JSON.parse(sessionStorage.getItem("votedRole"));
-		if(votedRole==null){
-			var votedRole=[]; //创建被投死的玩家身份数组
+	else{
+		if(died.indexOf(number)!=-1){
+			alert("得饶人处且饶人,请放过死者!");		
 		}
-		votedRole.push(role);
-		sessionStorage.setItem("votedRole",JSON.stringify(votedRole));
-		console.log(votedRole);
-		if(all[number-1]==1){
-			diedKiller.push(number);
-			sessionStorage.setItem("diedKiller",JSON.stringify(diedKiller));
-			console.log(diedKiller);
-		};
-		if((Math.floor((1/3)*all.length)-diedKiller.length)==0||(Math.floor((1/3)*all.length)-diedKiller.length)==(all.length - (Math.floor((1/3)*all.length))-(died.length-diedKiller.length)) ){
-			window.location.href="result.html";
-		}
-		else{
-			day=sessionStorage.getItem("day");
-		    day++; // 如果继续游戏,天数增加;
-		    console.log(day);
-			sessionStorage.setItem("day",day);
-			window.location.href="game.html";			
+		if((died.indexOf(number)==-1)){
+			died.push(number); //杀人后亡者放入死亡数组
+			sessionStorage.setItem("died",JSON.stringify(died));
+			var votedRole=JSON.parse(sessionStorage.getItem("votedRole"));
+			if(votedRole==null){
+				var votedRole=[]; //创建被投死的玩家身份数组
+			}
+			votedRole.push(role);
+			sessionStorage.setItem("votedRole",JSON.stringify(votedRole));
+			console.log(votedRole);
+			if(all[number-1]==1){
+				diedKiller.push(number);
+				sessionStorage.setItem("diedKiller",JSON.stringify(diedKiller));
+				console.log(diedKiller);
+			};
+			if((Math.floor((1/3)*all.length)-diedKiller.length)==0||(Math.floor((1/3)*all.length)-diedKiller.length)==(all.length - (Math.floor((1/3)*all.length))-(died.length-diedKiller.length)) ){
+				window.location.href="result.html";
+			}
+			else{
+				day=sessionStorage.getItem("day");
+					day++; // 如果继续游戏,天数增加;
+					console.log(day);
+				sessionStorage.setItem("day",day);
+				window.location.href="game.html";			
+			}
 		}
 	}
+
 });
 	   
 if(sessionStorage.getItem("trans2")!=null&&sessionStorage.getItem("trans3")!=null&&sessionStorage.getItem("trans4")!=null){

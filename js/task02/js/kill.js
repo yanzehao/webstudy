@@ -47,11 +47,16 @@ $(".footer").click(function(){
 	console.log(role);
 	if(role=="杀手"){
 		died=JSON.parse(sessionStorage.getItem("died"));
-		if(died.indexOf(number)!=-1){
-			alert("得饶人处且饶人,请放过死者!");		
+		if(died==null){
+			alert("请不要自相残杀!")
 		}
 		else{
-			alert("请不要自相残杀!")
+			if(died.indexOf(number)!=-1){
+				alert("得饶人处且饶人,请放过死者!");		
+			}
+			else{
+				alert("请不要自相残杀!")
+			}
 		}
 	}
 	if(role=="平民"){
