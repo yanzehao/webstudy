@@ -2,7 +2,7 @@ body {
   background-color: #29bde0;
 }
 .main-warp {
-  top: 45rem;
+  top: 20rem;
 }
 .people:hover + .hover {
   visibility: visible;
@@ -10,7 +10,6 @@ body {
 .nav {
   display: flex;
   justify-content: space-between;
-  height: 15rem;
   padding: 0rem 5rem;
   align-items: center;
   background-image: url(../img/bg.png);
@@ -18,7 +17,7 @@ body {
   background-size: 100% 15rem;
 }
 .nav span {
-  padding-bottom: 2rem;
+  line-height: 6rem;
 }
 .tips {
   padding: 2rem;

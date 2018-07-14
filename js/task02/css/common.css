@@ -3,7 +3,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-size: 4rem;
+  font-size: 2rem;
   margin: 0rem;
 }
 a {
@@ -12,23 +12,23 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
-  height: 10rem;
+  height: 5rem;
   align-items: center;
-  font-size: 6rem;
   color: #fff;
   background-color: #29bde0;
   border-bottom: 1px solid;
+  z-index: 999;
 }
 .header img {
-  height: 6rem;
+  height: 3rem;
 }
 .hidden {
   visibility: hidden;
 }
 .main-warp {
   position: fixed;
-  top: 21rem;
-  bottom: 29rem;
+  top: 10.5rem;
+  bottom: 14.5rem;
   overflow: hidden;
   overflow-y: auto;
   width: 100%;
@@ -40,11 +40,11 @@ a {
 }
 .main-warp .main .people {
   text-align: center;
-  border: 0.6rem solid white;
+  border: 0.3rem solid white;
 }
 .main-warp .main .people .vocation {
-  font-size: 5rem;
-  padding: 6rem 7rem;
+  font-size: 2.5rem;
+  padding: 3rem 3.5rem;
   background-color: #f5c97b;
 }
 .main-warp .main .people .number {
@@ -57,29 +57,29 @@ a {
   text-align: center;
 }
 .main-warp .main .hover img {
-  height: 7rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  height: 3.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .circle-blue {
-  height: 2rem;
-  width: 2rem;
+  height: 1rem;
+  width: 1rem;
   background-color: #29bde0;
   border-radius: 50%;
 }
 .footer {
   position: fixed;
-  bottom: 6rem;
-  width: 79.5%;
-  margin-left: 10rem;
-  margin-right: 10rem;
+  bottom: 0;
+  margin: 10vw 10vw;
+  width: calc(100% - 20vw);
   background-color: #fca000;
   border: none;
 }
 .footer span {
   display: inline-block;
-  padding: 2rem;
-  font-size: 5rem;
+  padding: 1rem;
+  height: 4rem;
+  font-size: 2.5rem;
   color: #fff;
 }
 .footerB {
@@ -92,21 +92,21 @@ a {
   border: none;
 }
 .footerB button {
-  width: 30rem;
-  padding: 3rem 2rem;
-  margin: 3rem 5rem;
+  width: 15rem;
+  padding: 1.5rem 1rem;
+  margin: 1.5rem 2.5rem;
   background-color: #fca000;
   border: none;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 .footerB button span {
-  font-size: 5rem;
+  font-size: 2.5rem;
   color: #fff;
 }
 .dark {
   background-color: #999999!important;
 }
 .darkLeft {
-  border: 5rem solid transparent;
-  border-right: 5rem solid #999999!important;
+  border: 2.5rem solid transparent;
+  border-right: 2.5rem solid #999999!important;
 }

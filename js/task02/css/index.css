@@ -85,7 +85,6 @@ input[type=checkbox]:checked ~ aside {
   transition: 0.2s ease-out; }
 
 :checked + label {
-  margin-top: 0.05rem;
   transform: translateX(75vw);
   z-index: 9999;
   transition: 0.2s ease-out; }
@@ -104,7 +103,6 @@ input[type=checkbox]:checked ~ aside {
 
 label {
   position: absolute;
-  top: 0.05rem;
   z-index: 9999; }
 
 input {

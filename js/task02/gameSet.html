@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<title>参数设置</title>
-	<meta charset="utf-8" name="viewport" width=device-width, initial-scale=1.0, user-scalable=no>
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/gameSet.css">
 </head>
@@ -21,12 +23,12 @@
 		<div class="right">
 			<ul id="list">
 			</ul>
-			<div id="set" onclick="getRole()">点击设置</div> 
+			<div id="set" onclick="getRole()">点击设置 <img src="./img/pen.png" width="25rem" alt=""></div> 
 		</div>
 	</div>
 	<!-- 玩家人数 -->
 	<div class="player">
-		玩家人数 <input type="number" id="player" value="8" min="4" max="18" onblur="inputChange()"> 人
+		玩家人数 <input type="number" id="player" value="8" min="4" max="18" size="10" onblur="inputChange()"> 
 	</div>
 	<!-- 滑块 -->
 	<div class="range">
