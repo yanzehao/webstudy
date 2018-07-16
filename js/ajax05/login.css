@@ -9,7 +9,7 @@ body {
 }
 div {
   position: relative;
-  margin: calc(50vh - 1rem) .10rem 0 .10rem;
+  margin: calc(50vh - 1.5rem) .10rem 0 .10rem;
   padding: .20rem;
   display: inline-block;
   color: #999999;
