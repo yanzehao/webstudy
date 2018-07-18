@@ -23,50 +23,50 @@ $(function(){
       $("#pro").html("密码不符合要求");
     }
     else{
-      // //创建XMLHttpRequest对象
-      // var xhr = new XMLHttpRequest();
-      // //打开XMLHttpRequest对象并规定请求的类型/地址/异步
-      // xhr.open("post",'/carrots-admin-ajax/a/login/',true);
-      // //如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头
-      // xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-      // //发送XMLHttpRequest对象给服务器
-      // xhr.send("name=" + name + "&pwd=" + pass );
-      // //每当 readyState 属性改变时，就会调用该函数
-      // xhr.onreadystatechange=function(){
-      //   //判断:请求完成且响应就绪
-      //   if (xhr.readyState==4 && xhr.status==200){
-      //     //服务器返回的是json格式的字符串
-      //     console.log(xhr.responseText);
-      //     //将json字符串转换为对象
-      //     var jsonobj = JSON.parse(xhr.responseText)
-      //     console.log(jsonobj);
-      //     //当用户名和密码都OK时,跳转到后台页面
-      //     if (jsonobj.message == "success"){
-      //       window.location.href="http://dev.admin.carrots.ptteng.com/#/dashboard";
-      //     }
-      //     else{
-      //       $("#pro").html(jsonobj.message);
-      //     }
-      //   }
-      // }
+      //创建XMLHttpRequest对象
+      var xhr = new XMLHttpRequest();
+      //打开XMLHttpRequest对象并规定请求的类型/地址/异步
+      xhr.open("post",'/carrots-admin-ajax/a/login/',true);
+      //如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头
+      xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      //发送XMLHttpRequest对象给服务器
+      xhr.send("name=" + name + "&pwd=" + pass );
+      //每当 readyState 属性改变时，就会调用该函数
+      xhr.onreadystatechange=function(){
+        //判断:请求完成且响应就绪
+        if (xhr.readyState==4 && xhr.status==200){
+          //服务器返回的是json格式的字符串
+          console.log(xhr.responseText);
+          //将json字符串转换为对象
+          var jsonobj = JSON.parse(xhr.responseText)
+          console.log(jsonobj);
+          //当用户名和密码都OK时,跳转到后台页面
+          if (jsonobj.message == "success"){
+            window.location.href="http://dev.admin.carrots.ptteng.com/#/dashboard";
+          }
+          else{
+            $("#pro").html(jsonobj.message);
+          }
+        }
+      }
 
-      //jquery ajax 异步请求
-      $.post("/carrots-admin-ajax/a/login/",
-      {
-        name:name,
-        pwd:pass
-      },
-      function(data,status){
-        var jsonobj = JSON.parse(data)
-        console.log(jsonobj);
-        //当用户名和密码都OK时,跳转到后台页面
-        if (jsonobj.message == "success"){
-          window.location.href="http://dev.admin.carrots.ptteng.com/#/dashboard";
-        }
-        else{
-          $("#pro").html(jsonobj.message);
-        }
-      });
+      // //jquery ajax 异步请求
+      // $.post("/carrots-admin-ajax/a/login/",
+      // {
+      //   name:name,
+      //   pwd:pass
+      // },
+      // function(data,status){
+      //   var jsonobj = JSON.parse(data)
+      //   console.log(jsonobj);
+      //   //当用户名和密码都OK时,跳转到后台页面
+      //   if (jsonobj.message == "success"){
+      //     window.location.href="http://dev.admin.carrots.ptteng.com/#/dashboard";
+      //   }
+      //   else{
+      //     $("#pro").html(jsonobj.message);
+      //   }
+      // });
     }   
   });
 })
