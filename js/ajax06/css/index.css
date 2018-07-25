@@ -1,0 +1,164 @@
+html {
+  font-size: 625%;
+  height: 100%; }
+
+body {
+  margin: 0;
+  height: 100%; }
+
+a, a:hover {
+  color: #ffffff; }
+
+.login {
+  text-align: center;
+  height: 100vh;
+  background: url(./images/login.jpg) no-repeat fixed;
+  background-size: cover; }
+  .login > form {
+    position: relative;
+    margin: calc(50vh - 1.5rem) 0.1rem 0 0.1rem;
+    padding: .20rem;
+    display: inline-block;
+    color: #999999;
+    background: rgba(153, 153, 153, 0.5); }
+    .login > form > .houtai {
+      text-align: center;
+      font-size: .20rem;
+      color: #03a9f4; }
+    .login > form > input {
+      padding: -1rem;
+      padding-left: .30rem;
+      border-radius: 0; }
+    .login > form > .word {
+      position: absolute;
+      top: 1.15rem;
+      left: .30rem; }
+    .login > form > .name {
+      position: absolute;
+      top: .67rem;
+      left: .30rem; }
+    .login > form > button {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      line-height: .30rem;
+      color: #ffffff;
+      background: #03a9f4;
+      border: none; }
+    .login > form > #pro {
+      font-size: .14rem;
+      color: red;
+      height: .30rem;
+      line-height: .30rem;
+      text-align: left; }
+
+.dashboard > header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: .70rem;
+  background: #212121; }
+  .dashboard > header h3 {
+    line-height: .70rem;
+    margin: 0;
+    padding-left: .40rem;
+    color: #c33636; }
+  .dashboard > header a, .dashboard > header span {
+    line-height: .70rem;
+    padding-right: .30rem;
+    font-size: .16rem;
+    color: #999999; }
+    .dashboard > header a:hover, .dashboard > header span:hover {
+      color: #c33636; }
+.dashboard > .board {
+  position: fixed;
+  top: .70rem;
+  margin: 0;
+  width: 2rem;
+  height: 100vh;
+  background: #3d3d3d; }
+  .dashboard > .board .panel-body {
+    padding: 0; }
+  .dashboard > .board p {
+    font-size: 16px;
+    text-align: center;
+    line-height: .40rem;
+    color: #ffffff; }
+    .dashboard > .board p:hover {
+      background: #c33636; }
+  .dashboard > .board .panel, .dashboard > .board .ng-scope, .dashboard > .board .ng-isolate-scope, .dashboard > .board .panel-default {
+    margin: 0;
+    border-radius: 0;
+    border: 0;
+    background: #2f2f2f;
+    border-bottom: 1px solid #4f4f4f; }
+  .dashboard > .board .panel-heading {
+    color: #eeeeee;
+    background: #3d3d3d; }
+  .dashboard > .board .panel-title {
+    text-align: center; }
+  .dashboard > .board .pull-right {
+    border: none;
+    background: #3d3d3d; }
+.dashboard h1 {
+  position: absolute;
+  top: .70rem;
+  left: 2rem;
+  z-index: -1; }
+
+.list {
+  padding: .20rem;
+  margin-left: 2rem;
+  height: 100%;
+  background: #eeeeee; }
+  .list > .title, .list > .artic {
+    border-radius: .05rem;
+    margin-top: .70rem;
+    border: 1px solid #3d3d3d;
+    padding: .10rem;
+    background: #ffffff; }
+    .list > .title .lain, .list > .artic .lain {
+      margin: .10rem; }
+  .list input:focus, .list select:focus {
+    border: 1px solid #c33636; }
+  .list > .artic {
+    margin-top: .20rem;
+    padding: 0; }
+    .list > .artic > .ttop {
+      border-top-right-radius: .05rem;
+      border-top-left-radius: .05rem;
+      border: none;
+      padding: 0 .10rem;
+      height: .35rem;
+      color: #ffffff;
+      background: #3d3d3d; }
+      .list > .artic > .ttop > span {
+        line-height: .35rem; }
+      .list > .artic > .ttop > button {
+        float: right;
+        margin-top: .055rem; }
+    .list > .artic > table {
+      border-radius: .05rem;
+      border: none;
+      margin: 0; }
+    .list > .artic .thead {
+      font-weight: 900;
+      border: none;
+      background: #eeeeee; }
+    .list > .artic th {
+      border: none;
+      text-align: center;
+      vertical-align: middle; }
+    .list > .artic tr {
+      border-top: 1px solid #999999; }
+  .list .pages {
+    display: flex;
+    justify-content: space-between; }
+    .list .pages input {
+      width: .50rem; }
+
+.detail {
+  background: #999999; }
+
+/*# sourceMappingURL=index.css.map */

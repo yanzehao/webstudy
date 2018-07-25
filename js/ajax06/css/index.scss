@@ -1,0 +1,219 @@
+html {
+  font-size: 625%; 
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+a,a:hover{color:#ffffff;}
+//----------------------------------------------------------------------------------------------------------------
+//登录页面
+.login {
+  text-align: center;
+  height: 100vh;
+  background: url(./images/login.jpg) no-repeat fixed;
+  background-size: cover;
+  
+  >form {
+    position: relative;
+    margin: calc(50vh - 1.5rem) .10rem 0 .10rem;
+    padding: .20rem;
+    display: inline-block;
+    color: #999999;
+    background: rgba(153, 153, 153, .5);
+    >.houtai {
+      text-align: center;
+      font-size: .20rem;
+      color: #03a9f4;
+    }
+    >input{
+      padding: -1rem;
+      padding-left: .30rem;
+      border-radius: 0;
+    }
+    >.word {
+      position: absolute;
+      top: 1.15rem;
+      left: .30rem;
+    }
+    >.name {
+      position: absolute;
+      top: .67rem;
+      left: .30rem;
+    }
+    >button {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      line-height: .30rem;
+      color: #ffffff;
+      background: #03a9f4;
+      border: none;
+    }
+    >#pro {
+      font-size: .14rem;
+      color: red;
+      height: .30rem;
+      line-height: .30rem;
+      text-align: left;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------------------------------
+//风琴菜单
+.dashboard {
+  >header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: .70rem;
+    background: #212121;
+    h3 {
+      line-height: .70rem;
+      margin: 0;
+      padding-left: .40rem;
+      color: #c33636;
+    }
+    a,span {
+      line-height: .70rem;
+      padding-right: .30rem;
+      font-size: .16rem;
+      color: #999999;
+      &:hover {color: #c33636;}
+    }
+  }
+  >.board {
+    position: fixed;
+    top: .70rem;
+    margin: 0;
+    width: 2rem;
+    height: 100vh;
+    background: #3d3d3d;
+    .panel-body {
+      padding: 0;
+    }
+    p {
+      font-size: 16px;
+      text-align: center;
+      line-height: .40rem;
+      color: #ffffff;
+      &:hover {background: #c33636;}
+    }
+    .panel,.ng-scope,.ng-isolate-scope,.panel-default {
+      margin: 0;
+      border-radius: 0;
+      border: 0;
+      background: #2f2f2f;
+      border-bottom: 1px solid #4f4f4f;
+    }
+    .panel-heading {
+      color: #eeeeee;
+      background: #3d3d3d;
+    }
+    .panel-title {
+      text-align: center;
+    }
+    .pull-right {
+      border: none;
+      background: #3d3d3d;
+    }
+  }
+  h1 {
+    position: absolute;
+    top: .70rem;
+    left: 2rem;
+    z-index: -1;
+  }
+}
+
+//------------------------------------------------------------------------------------------------------
+//列表项
+.list {
+  padding: .20rem;
+  margin-left: 2rem;
+  height: 100%;
+  background: #eeeeee;
+
+  // 搜索区域
+  >.title {
+    border-radius: .05rem;
+    margin-top: .70rem;
+    border: 1px solid #3d3d3d;
+    padding: .10rem;
+    background: #ffffff;
+    .lain {
+      margin: .10rem;
+    }
+  }
+  input:focus,select:focus{
+    border: 1px solid #c33636;
+  }
+
+  // Article列表
+  >.artic {
+    @extend .title;
+    margin-top: .20rem;
+    padding: 0;
+
+    // 表格导航条
+    >.ttop {
+      border-top-right-radius: .05rem;
+      border-top-left-radius: .05rem;
+      border: none;
+      padding: 0 .10rem;
+      height: .35rem;
+      color: #ffffff;
+      background: #3d3d3d;
+      >span {line-height: .35rem;}
+      >button {float: right;margin-top: .055rem;}
+    }
+
+    // 表格
+    >table {
+      border-radius: .05rem;
+      border: none;
+      margin: 0;
+    }
+
+    // 表头
+    .thead {
+      font-weight: 900;
+      border: none;
+      background: #eeeeee;
+    }
+    //单元格
+    th {
+      border: none;
+      text-align: center;
+      vertical-align: middle;
+    }
+    // 每行
+    tr {
+      border-top: 1px solid #999999;
+    }
+  }
+  //分页
+  .pages {
+    display: flex;
+    justify-content: space-between;
+    input {
+      width: .50rem;
+    }
+    // @extend .title;
+  }
+  
+}
+
+//------------------------------------------------------------------------------------------------------
+//详情页
+.detail {
+  background: #999999;
+}
+
+
+
+

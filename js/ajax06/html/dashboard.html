@@ -1,0 +1,47 @@
+<div class="dashboard" ng-controller="AccordionCtrl">
+  <header>
+    <h3>萝卜多后台</h3>
+    <div>
+      <a>管理员</a>
+      <a>admin</a>
+      <a href="http://www.js6.com/#!/login"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
+    </div>
+  </header>
+  <uib-accordion close-others="true" class="board">
+    <div uib-accordion-group is-open="status1.isCustomHeaderOpen">
+      <uib-accordion-heading>
+        信息管理<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status1.isCustomHeaderOpen, 'glyphicon-chevron-right': !status1.isCustomHeaderOpen}"></i>
+      </uib-accordion-heading>
+      <p>公司信息</p>
+      <p>职位信息</p>
+    </div>                          
+    <div uib-accordion-group is-open="status2.isCustomHeaderOpen">
+      <uib-accordion-heading>
+        内容管理<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status2.isCustomHeaderOpen, 'glyphicon-chevron-right': !status2.isCustomHeaderOpen}"></i>
+      </uib-accordion-heading>
+      <p ui-sref=".list"><a href="">Article管理</a></p> 
+    </div>
+    <div uib-accordion-group is-open="status3.isCustomHeaderOpen">
+      <uib-accordion-heading>
+        内容管理<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status3.isCustomHeaderOpen, 'glyphicon-chevron-right': !status3.isCustomHeaderOpen}"></i>
+      </uib-accordion-heading>
+      <p>账号管理</p> 
+      <p>角色管理</p> 
+      <p>修改密码</p> 
+      <p>模块管理</p> 
+    </div>
+  </uib-accordion>
+  <h1>welcome</h1>
+  <div ui-view=""></div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+  
