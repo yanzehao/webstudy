@@ -7,57 +7,70 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
     url: '/carrots-admin-ajax/a/article/search',
     //params属性将输入框的值以键值对的形式传给服务器
     params: {
-      page: $stateParams.page,
-      size: $stateParams.size,
+      page:     $stateParams.page,
+      size:     $stateParams.size,
+      title:    $stateParams.title,
+      author:   $stateParams.author,
+      startAt:  $stateParams.startAt,
+      endAt:    $stateParams.endAt,
+      status:   $stateParams.status,
+      type:     $stateParams.type,
     },
   }).then(function (xhr) {
     console.log(xhr);
-    $scope.records = xhr.data.data.articleList;
+    $scope.title       = $stateParams.title;
+    $scope.author      = $stateParams.author;
+    $scope.startAt     = $stateParams.startAt;
+    $scope.endAt       = $stateParams.endAt;
+    $scope.status      = $stateParams.status;
+    $scope.type        = $stateParams.type;
     $scope.currentPage = $stateParams.page;
-    // 分页设置
-    //单页显示数量
-    $scope.size = xhr.data.data.size;
-    console.log($scope.size);
-    //数据总量
-    $scope.total = xhr.data.data.total;
-    console.log($scope.total);
-    //当前页面数据
-    $log.log("xhr.data.data.page")
-    //单页最大显示数量
-    $scope.maxSize = 5;
-
-    // $http({
-    //   method: 'post',
-    //   url: '/carrots-admin-ajax/a/login',
-    //   //params属性将输入框的值以键值对的形式传给服务器
-    //   params: {
-    //     name: $scope.name,  
-    //     pwd: $scope.pass,
-    //   },
-    //   //编码格式
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    // }).then(function (xhr) {
-    //   console.log(xhr.data);
-    //   if (xhr.data.code === 0) {
-    //     $state.go("dashboard");
-    //   } else {
-    //     $scope.info = xhr.data.message;
-    //   }
-    // })
+    $scope.size        = $stateParams.size;
+    $scope.total       = xhr.data.data.total;
+    $scope.records     = xhr.data.data.articleList;
+    $scope.maxSize     = 5;
 
   })
-  $scope.pagesclick = function () {
+
+  //点击分页获取page数据
+  $scope.pagechange = function () {
+    console.log($scope.currentPage);
     $state.go ("dashboard.list",{
       page:$scope.currentPage
+    },{
+      //从服务器端重新载入
+      reload:true
+    })
+  }
+
+  //分页相关输入框指定数据进行搜索
+  $scope.sizego = function () {
+    $state.go ("dashboard.list",{
+      size:$scope.size,
+      page:$scope.pagego
+    },{
+      //从服务器端重新载入
+      reload:true
+    })
+  }
+
+  //头部按条件搜索
+  $scope.search = function() {
+    console.log($scope.title);
+    $state.go ("dashboard.list",{
+      title   :$scope.title,
+      author  :$scope.author,
+      startAt :$scope.startAt,
+      endAt   :$scope.endAt,
+      status  :$scope.status,
+      type    :$scope.type,
     },{
       reload:true
     })
   }
+  $scope.nbg = 1;
 })
 
- 
 //释义服务器返回的字段（type类型）
 app.filter("Changetype",function () {
   return function (inputtype) {
@@ -83,6 +96,8 @@ app.filter("statu",function () {
     return changed;
   }
 })
+
+
 
 
 

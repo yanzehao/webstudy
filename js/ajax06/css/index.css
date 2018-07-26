@@ -149,12 +149,18 @@ a, a:hover {
     .list > .artic th {
       border: none;
       text-align: center;
-      vertical-align: middle; }
+      vertical-align: middle;
+      max-width: 1rem;
+      word-wrap: break-word; }
     .list > .artic tr {
       border-top: 1px solid #999999; }
   .list .pages {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-around;
+    align-items: center; }
+    .list .pages > div {
+      display: flex;
+      align-items: center; }
     .list .pages input {
       width: .50rem; }
 

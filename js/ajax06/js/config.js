@@ -13,7 +13,7 @@ app.config(function ($stateProvider,$urlRouterProvider){
   })
   .state('dashboard.list',{
     //url传参
-    url:'/list?page&size',
+    url:'/list?page&size&title&author&startAt&endAt&status&type',
     templateUrl:'./html/list.html',
   })
   .state('dashboard.detail',{

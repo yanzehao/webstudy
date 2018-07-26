@@ -1,3 +1,5 @@
+// 导航栏颜色
+$nav-color:#242424;
 html {
   font-size: 625%; 
   height: 100%;
@@ -8,6 +10,7 @@ body {
   height: 100%;
 }
 a,a:hover{color:#ffffff;}
+
 //----------------------------------------------------------------------------------------------------------------
 //登录页面
 .login {
@@ -63,6 +66,7 @@ a,a:hover{color:#ffffff;}
 }
 
 //------------------------------------------------------------------------------------------------------
+
 //风琴菜单
 .dashboard {
   >header {
@@ -131,6 +135,7 @@ a,a:hover{color:#ffffff;}
 }
 
 //------------------------------------------------------------------------------------------------------
+
 //列表项
 .list {
   padding: .20rem;
@@ -190,6 +195,8 @@ a,a:hover{color:#ffffff;}
       border: none;
       text-align: center;
       vertical-align: middle;
+      max-width: 1rem;
+      word-wrap:break-word ;
     }
     // 每行
     tr {
@@ -199,13 +206,16 @@ a,a:hover{color:#ffffff;}
   //分页
   .pages {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    >div {
+      display: flex;
+      align-items: center;
+    }
     input {
       width: .50rem;
     }
-    // @extend .title;
   }
-  
 }
 
 //------------------------------------------------------------------------------------------------------

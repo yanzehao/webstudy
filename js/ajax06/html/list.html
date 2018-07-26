@@ -4,21 +4,21 @@
     <form class="form-inline">
       <div class="form-group lain">
         <label for="exampleInputName2">标题</label>
-        <input type="text" class="form-control" id="exampleInputName2">
+        <input type="text" class="form-control" id="exampleInputName2" ng-model="title" value="{{title}}">
       </div>
       <div class="form-group lain">
         <label for="exampleInputEmail2">创建者</label>
-        <input type="text" class="form-control" id="exampleInputName2">
+        <input type="text" class="form-control" id="exampleInputName2" ng-model="author" value="{{author}}">
       </div>
       <div class="form-group lain">
         <label for="exampleInputEmail2">创建时间</label>
-        <input type="text" class="form-control" id="exampleInputName2">
+        <input type="text" class="form-control" id="exampleInputName2" ng-model="startAt" value="{{startAt}}">
         -
-        <input type="text" class="form-control" id="exampleInputName2">
+        <input type="text" class="form-control" id="exampleInputName2" ng-model="endAt" value="{{endAt}}">
       </div>
       <div class="form-group lain">
         <label for="exampleInputEmail2">状态</label>
-        <select class="form-control">
+        <select class="form-control" ng-model="status" value="{{status}}">
           <option>全部</option>
           <option>草稿</option>
           <option>上线</option>
@@ -26,15 +26,15 @@
       </div>
       <div class="form-group lain">
         <label for="exampleInputEmail2">类型</label>
-        <select class="form-control">
+        <select class="form-control" ng-model="type" value="{{type}}">
           <option>首页</option>
           <option>找职位</option>
           <option>找精英</option>
           <option>行业大图</option>
         </select>
       </div>
-      <button type="button" class="btn btn-danger">清空</button>
-      <button type="button" class="btn btn-success">搜索</button>
+      <button type="button" class="btn btn-danger" ng-click="empty()">清空</button>
+      <button type="button" class="btn btn-success" ng-click="search()">搜索</button>
     </form>
   </div>
   <!-- 表格主体内容 -->
@@ -53,30 +53,34 @@
         <th>创建时间</th>
         <th>修改时间</th>
         <th>状态</th>
-        <th>操作</th>
+        <th style="width: 150px;">操作</th>
       </tr>
       <tr ng-repeat="x in records">
-        <th ng-model="id">        {{x.id}}                                     </th>
-        <th ng-model="img"> <img src="{{x.img}}" alt="图片未上传" width="80px">         </th>
+        <th ng-bind="nbg">                                                     </th>
+        <th ng-model="img"> <img src="{{x.img}}" alt="图片未上传" width="80px"> </th>
         <th ng-model="title">     {{x.title}}                                  </th>
         <th ng-model="type">      {{x.type | Changetype}}                      </th>
         <th ng-model="author">    {{x.author}}                                 </th>
         <th ng-model="createAt">  {{x.createAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
         <th ng-model="updateAt">  {{x.updateAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
         <th ng-model="status">    {{x.status | statu}}                         </th>
-        <th>操作</th>
+        <th style="width: 150px;">
+          <button type="button" class="btn btn-info    btn-xs">上线</button>        
+          <button type="button" class="btn btn-success btn-xs">编辑</button>        
+          <button type="button" class="btn btn-danger  btn-xs">删除</button>        
+        </th>
       </tr>    
     </table>
   </div>
   <!-- 分页 -->
   <div class="pages">
-    <span>
+    <div>
       <span>每页显示</span> 
-      <input type="text" class="form-control" ng-model="size" value="{{size}}"> 
+      <input type="text" class="form-control input-sm" ng-model="size" value="{{size}}" > 
       <span>页</span>
-    </span>
+    </div>
     <uib-pagination 
-      ng-change             = "pagesclick()"
+      ng-change             = "pagechange()"
       ng-model              = "currentPage"
       num-pages             = "numPages"
       total-items           = "total"
@@ -90,12 +94,12 @@
       rotate                = "false"
       boundary-link-numbers = "false">
     </uib-pagination>
-    <pre>页面: {{currentPage}} / {{numPages}}</pre>
-    <span>
-      <span>去第</span>
-      <input type="text" class="form-control" size="5">
-      <span>页</span>
-    </span>
+    <div>
+      <p>去第</p> 
+      <input type="text" class="form-control input-sm" ng-model="pagego" value="{{pagego}}">
+      <p>页</p> 
+    </div>
+    <button ng-click="sizego()" class="btn btn-default ">确认</button>
   </div>
 </div>
 
