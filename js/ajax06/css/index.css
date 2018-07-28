@@ -107,25 +107,25 @@ a, a:hover {
   left: 2rem;
   z-index: -1; }
 
-.list {
+.list, .detail {
   padding: .20rem;
   margin-left: 2rem;
   height: 100%;
   background: #eeeeee; }
-  .list > .title, .list > .artic {
+  .list > .title, .detail > .title, .list > .artic, .detail > .artic, .detail.list > form, .detail > form {
     border-radius: .05rem;
     margin-top: .70rem;
     border: 1px solid #3d3d3d;
     padding: .10rem;
     background: #ffffff; }
-    .list > .title .lain, .list > .artic .lain {
+    .list > .title .lain, .detail > .title .lain, .list > .artic .lain, .detail > .artic .lain, .detail.list > form .lain, .detail > form .lain {
       margin: .10rem; }
-  .list input:focus, .list select:focus {
+  .list input:focus, .detail input:focus, .list select:focus, .detail select:focus {
     border: 1px solid #c33636; }
-  .list > .artic {
+  .list > .artic, .detail > .artic, .detail > form {
     margin-top: .20rem;
     padding: 0; }
-    .list > .artic > .ttop {
+    .list > .artic > .ttop, .detail > .artic > .ttop, .detail.list > form > .ttop, .detail > form > .ttop {
       border-top-right-radius: .05rem;
       border-top-left-radius: .05rem;
       border: none;
@@ -133,38 +133,59 @@ a, a:hover {
       height: .35rem;
       color: #ffffff;
       background: #3d3d3d; }
-      .list > .artic > .ttop > span {
+      .list > .artic > .ttop > span, .detail > .artic > .ttop > span, .detail.list > form > .ttop > span, .detail > form > .ttop > span {
         line-height: .35rem; }
-      .list > .artic > .ttop > button {
+      .list > .artic > .ttop > button, .detail > .artic > .ttop > button, .detail.list > form > .ttop > button, .detail > form > .ttop > button {
         float: right;
         margin-top: .055rem; }
-    .list > .artic > table {
+    .list > .artic > table, .detail > .artic > table, .detail.list > form > table, .detail > form > table {
       border-radius: .05rem;
       border: none;
       margin: 0; }
-    .list > .artic .thead {
+    .list > .artic .thead, .detail > .artic .thead, .detail.list > form .thead, .detail > form .thead {
       font-weight: 900;
       border: none;
       background: #eeeeee; }
-    .list > .artic th {
+    .list > .artic th, .detail > .artic th, .detail.list > form th, .detail > form th {
       border: none;
       text-align: center;
       vertical-align: middle;
       max-width: 1rem;
       word-wrap: break-word; }
-    .list > .artic tr {
+    .list > .artic tr, .detail > .artic tr, .detail.list > form tr, .detail > form tr {
       border-top: 1px solid #999999; }
-  .list .pages {
+  .list .pages, .detail .pages {
     display: flex;
     justify-content: space-around;
     align-items: center; }
-    .list .pages > div {
+    .list .pages > div, .detail .pages > div {
       display: flex;
       align-items: center; }
-    .list .pages input {
+    .list .pages input, .detail .pages input {
       width: .50rem; }
 
 .detail {
-  background: #999999; }
+  padding-top: .70rem; }
+  .detail input {
+    width: 100%; }
+  .detail select {
+    width: 100%; }
+  .detail th {
+    min-width: .50rem;
+    text-align: center; }
+  .detail .toolbar {
+    margin: 0 .50rem;
+    border-top-right-radius: .05rem;
+    border-top-left-radius: .05rem;
+    border: 1px solid #999999;
+    background: #eeeeee; }
+  .detail .bodytext {
+    margin: 0 .50rem;
+    border-bottom-right-radius: .05rem;
+    border-bottom-left-radius: .05rem;
+    border: 1px solid #999999;
+    border-top: none;
+    min-height: 2rem;
+    background: #ffffff; }
 
 /*# sourceMappingURL=index.css.map */

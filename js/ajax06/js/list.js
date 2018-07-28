@@ -24,26 +24,8 @@ app.filter("statu",function () {
   }
 })
 
-
-
-// //释义服务器返回的字段（status类型）
-// app.filter("statuscode",function () {
-//   return function (statuscode) {
-//     var changed = "";
-//     switch (statuscode){
-//       case "草稿":changed = 1; break;
-//       case "上线":changed = 2; break;
-//     }
-//     return changed;
-//   }
-// })
-
 // 列表页控制器
 app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
-  // if($scope.status=="草稿"){
-  //   $stateParams.status = 1;
-  //   $stateParams.type = 2;
-  // }
 
   // 请求数据
   $http({
@@ -58,18 +40,17 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
       author:   $stateParams.author,
       startAt:  $stateParams.startAt,
       endAt:    $stateParams.endAt,
-      status:   $stateParams.a,
-      type:     $stateParams.b,
+      status:   $stateParams.status,
+      type:     $stateParams.type,
     },
   }).then(function (xhr) {
     console.log(xhr);
-    console.log($scope.a_status);
     $scope.title       = $stateParams.title;
     $scope.author      = $stateParams.author;
-    $scope.startAt     = $stateParams.startAt;
-    $scope.endAt       = $stateParams.endAt;
-    $scope.a      = $stateParams.a;
-    $scope.b        = $stateParams.b;
+    $scope.dt1         = $stateParams.startAt;
+    $scope.dt2         = $stateParams.endAt;
+    $scope.a           = $stateParams.status;
+    $scope.b           = $stateParams.type;
     $scope.currentPage = $stateParams.page;
     $scope.size        = xhr.data.data.size;
     $scope.total       = xhr.data.data.total;
@@ -115,69 +96,130 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
   //头部按条件搜索
   $scope.search = function() {
 
-    console.log($scope.title);
-    console.log($scope.a);
     $state.go ("dashboard.list",{
       title   :$scope.title,
       author  :$scope.author,
-      startAt :$scope.startAt,
-      endAt   :$scope.endAt,
+      startAt :$scope.dt1,
+      endAt   :$scope.dt2,
       status  :$scope.a,
       type    :$scope.b,
     },{
       reload:true
     })
   }
-  // // 清除按钮
-  // $scope.clear = function() {
-  //   console.log($scope.title);
-  //   $state.go ("dashboard.list",{
-  //     title   :undefined,
-  //     author  :undefined,
-  //     startAt :undefined,
-  //     endAt   :undefined,
-  //     status  :undefined,
-  //     type    :undefined,
-  //   },{
-  //     reload:true
-  //   })
-  // }
+
+  // 清除按钮
+  $scope.empty = function() {
+    $state.go ("dashboard.list",{
+      title       :undefined,
+      author      :undefined,
+      startAt     :undefined,
+      endAt       :undefined,
+      status      :undefined,
+      type        :undefined,
+      page        :1
+    },{
+      reload:true
+    })
+  }
+
+  // 新增页
+  $scope.add = function() {
+    $state.go ("dashboard.detail");
+  }
+
+  //日期选择器
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function() {
+    $scope.dt1 = null;
+    $scope.dt2 = null;
+  };
+
+  $scope.inlineOptions = {
+    customClass: getDayClass,
+    minDate: new Date(),
+    showWeeks: true
+  };
+
+  $scope.dateOptions = {
+    dateDisabled: disabled,
+    formatYear: 'yy',
+    maxDate: new Date(2020, 5, 22),
+    minDate: new Date(),
+    startingDay: 1
+  };
+
+
+  // Disable weekend selection
+  function disabled(data) {
+    var date = data.date,
+      mode = data.mode;
+    // return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+  }
+
+  $scope.toggleMin = function() {
+    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+  };
+
+  $scope.toggleMin();
+
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+  $scope.open2 = function() {
+    $scope.popup2.opened = true;
+  };
+
+  $scope.setDate = function(year, month, day) {
+    $scope.dt1 = new Date(year, month, day);
+    $scope.dt2 = new Date(year, month, day);
+  };
+
+  $scope.altInputFormats = ['M!/d!/yyyy'];
+
+  $scope.popup1 = {
+    opened: false
+  };
+
+  $scope.popup2 = {
+    opened: false
+  };
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var afterTomorrow = new Date();
+  afterTomorrow.setDate(tomorrow.getDate() + 1);
+  $scope.events = [
+    {
+      date: tomorrow,
+      status: 'full'
+    },
+    {
+      date: afterTomorrow,
+      status: 'partially'
+    }
+  ];
+
+  function getDayClass(data) {
+    var date = data.date,
+      mode = data.mode;
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i = 0; i < $scope.events.length; i++) {
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+    return '';
+  }
 })
-
-
-
-
-
-// //释义服务器返回的字段（status类型）
-// app.filter("statuscode",function () {
-//   return function (statuscode) {
-//     var changed = "";
-//     switch (statuscode){
-//       case "1":changed = "草稿"; break;
-//       case "2":changed = "上线"; break;
-//     }
-//     return changed;
-//   }
-// })
-
-//释义服务器返回的字段（status类型）
-// app.filter("statuscode",function (status) {
-//   return function (index) {
-//     return draft[index]
-//   }
-// })
-// app.constant('status',{
-//   1:"草稿",
-//   2:"上线"
-// })
-// app.constant('type',{
-//   0:"首页banner",
-//   1:"找职位banner",
-//   2:"找精英banner",
-//   3:"行业大图",
-// })
-
-
-
-
-

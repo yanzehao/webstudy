@@ -221,7 +221,32 @@ a,a:hover{color:#ffffff;}
 //------------------------------------------------------------------------------------------------------
 //详情页
 .detail {
-  background: #999999;
+  @extend .list;
+  padding-top: .70rem;
+  // border-radius: .05rem;
+  // border: 1px solid #3d3d3d;
+  >form {
+    @extend .artic;
+  }
+  input {width: 100%;}
+  select{width: 100%}
+  th {min-width: .50rem;text-align: center;}
+  .toolbar {
+    margin: 0 .50rem;
+    border-top-right-radius: .05rem;
+    border-top-left-radius: .05rem;
+    border: 1px solid #999999;
+    background: #eeeeee;
+  }
+  .bodytext {
+    margin: 0 .50rem;
+    border-bottom-right-radius: .05rem;
+    border-bottom-left-radius: .05rem;
+    border: 1px solid #999999;
+    border-top: none;
+    min-height: 2rem;
+    background: #ffffff;
+  }
 }
 
 

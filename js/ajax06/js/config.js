@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','ui.bootstrap','ngAnimate','ngTouch','ngMessages']);
+var app = angular.module('app', ['ui.router','ui.bootstrap','ngAnimate','ngTouch','ngMessages','angularFileUpload']);
 // ["ui.router", "ui.bootstrap", "ngFileUpload", "ngAnimate", "ngSanitize","ng.ueditor","ngMessages"]
 app.config(function ($stateProvider,$urlRouterProvider){
   $urlRouterProvider.otherwise('/login');

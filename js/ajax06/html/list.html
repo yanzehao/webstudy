@@ -10,30 +10,49 @@
         <label for="exampleInputEmail2">创建者</label>
         <input type="text" class="form-control" id="exampleInputName2" ng-model="author" value="{{author}}">
       </div>
+      <!-- 日期选择器 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">创建时间</label>
-        <input type="text" class="form-control" id="exampleInputName2" ng-model="startAt" value="{{startAt}}">
-        -
-        <input type="text" class="form-control" id="exampleInputName2" ng-model="endAt" value="{{endAt}}">
+        <input ng-click="open1()" type="text" class="form-control" ng-model="dt1"
+          value="{{dt1 | date:'sss'}}"
+          uib-datepicker-popup  
+          is-open              = "popup1.opened" 
+          datepicker-options   = "dateOptions" 
+          ng-required          = "true" 
+          clear-text           = "清空"
+          current-text         = "今天"
+          close-text           = "关闭" 
+          datepicker-options   ="{maxDate:(dt2)}"
+          alt-input-formats    = "altInputFormats" />
       </div>
+      <div class="form-group lain">
+        <label for="exampleInputEmail2">——</label>
+        <input ng-click="open2()" type="text" class="form-control" ng-model="dt2" 
+          value="{{dt2 | date:'sss'}}"
+          uib-datepicker-popup  
+          is-open              = "popup2.opened" 
+          datepicker-options   = "dateOptions" 
+          ng-required          = "true" 
+          datepicker-options   = "{minDate:(dt1)}"
+          clear-text           = "清空"
+          current-text         = "今天"
+          close-text           = "关闭" />
+      </div>
+      <!-- 状态选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">状态</label>
         <select ng-options="x.status as x.draft for x in a_status" class="form-control" ng-model="a">
           <option value="">全部</option>
-          <!-- <option>1</option>
-          <option>2</option> -->
         </select>
       </div>
+      <!-- 类型选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">类型</label>
         <select ng-options="x.type as x.online for x in b_type" class="form-control" ng-model="b">
           <option value="">全部</option>
-          <!-- <option>1</option>
-          <option>2</option>
-          <option>3</option> -->
         </select>
       </div>
-      <button type="button" class="btn btn-danger" ng-click="clear()">清空</button>
+      <button type="button" class="btn btn-danger" ng-click="empty()">清空</button>
       <button type="button" class="btn btn-success" ng-click="search()">搜索</button>
     </form>
   </div>
@@ -41,7 +60,7 @@
   <div class="artic">
     <div class="ttop">
       <span>Article列表</span>
-      <button type="button" class="btn btn-success btn-xs">+新增</button>
+      <button type="button" class="btn btn-success btn-xs" ng-click="add()">+新增</button>
     </div>
     <table class="table table-bordered table-striped">
       <tr class="thead">
@@ -56,7 +75,7 @@
         <th style="width: 150px;">操作</th>
       </tr>
       <tr ng-repeat="x in records">
-        <th ng-bind="nbg">                                                     </th>
+        <th ng-bind="$index+1">                                                     </th>
         <th ng-model="img"> <img src="{{x.img}}" alt="图片未上传" width="80px"> </th>
         <th ng-model="title">     {{x.title}}                                  </th>
         <th ng-model="type">      {{x.type | Changetype}}                      </th>
@@ -101,5 +120,6 @@
     </div>
     <button ng-click="sizego()" class="btn btn-default ">确认</button>
   </div>
+  <div ui-view=""></div>
 </div>
 
