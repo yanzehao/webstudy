@@ -1,83 +1,88 @@
 <div class="detail" ng-controller="detailctrl">
   <form class="form-inline" >
 		<div class="ttop">
-				<span>新增Article</span>
+			<span>{{editOrAdd}}</span>
 		</div>
     <div class="form-group lain">
       <label for="exampleInputName2">标题名称</label>
-      <input type="text" class="form-control" id="exampleInputName2" size="60" ng-model="title" value="{{title}}">
+      <input type="text" class="form-control" id="exampleInputName2" size="60" ng-model="title">
 		</div>
 		<br>
 		<div class="form-group lain">
       <label for="exampleInputEmail2">类型</label>
-      <select ng-options="x.type as x.online for x in b_type" class="form-control" ng-model="b">
-        <option value="">全部</option>
+      <select name="industry" ng-options="value.id as value.label for value in types" class="form-control" ng-model="type" >
       </select>
+		</div>
+		<div class="form-group lain">
+			<label for="exampleInputEmail2" ng-show="type==3">行业</label>
+			<select name="industry" ng-show="type==3" ng-options="value.id as value.label for value in industrys" class="form-control" ng-model="industry">
+			</select>
 		</div>
 		<br>
 		<!-- 富文本编辑器 -->
-    <div id="div1" class="toolbar"></div>
+		<label for="exampleInputEmail2">说明</label>
+    <div id="div1" class="toolbar" style="flex-flow: wrap;"></div>
 		<div id="div2" class="bodytext"></div>
-		
+		<!-- 跳转链接 -->
 		<div class="form-group lain">
       <label for="exampleInputName2">跳转链接</label>
-      <input type="text" class="form-control" id="exampleInputName2" size="60">
+      <input type="text" ng-model="link" class="form-control" id="exampleInputName2" size="60">
 		</div>
+		<!-- 图片上传插件 -->
+		<!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+		<input type="file" ng-if="uploader" nv-file-select="" uploader="uploader" />
+		<table class="table">
+			<thead>
+				<tr>
+					<th width="50%">图片名</th>
+					<th ng-show="uploader.isHTML5">文件大小</th>
+					<th ng-show="uploader.isHTML5">进度</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in uploader.queue">
+					<td>
+						<strong>{{ item.file.name }}</strong>
+						<!-- Image preview -->
+						<!--auto height-->
+						<!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+						<!--auto width-->
+						<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+						<!--fixed width and height -->
+						<!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+					</td>
+					<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+					<td ng-show="uploader.isHTML5">
+						<div class="progress" style="margin-bottom: 0;">
+								<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+						</div>
+					</td>
+					<td class="text-center">
+						<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+						<span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+						<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+					</td>
+					<td nowrap>
+						<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+							<span class="glyphicon glyphicon-upload"></span> 上传
+						</button>
+						<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+							<span class="glyphicon glyphicon-trash"></span> 删除
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
 		<br>
-		<div class="form-group lain">
-			<label for="exampleInputName2">配图</label>
-			<button type="button" class="btn btn-info">选择文件</button>
-		</div>
-		<br>
-		<div>
-			<button type="button" class="btn btn-success">立即上线</button>
-			<button type="button" class="btn btn-success">存为草稿</button>
-			<button type="button" class="btn btn-default" ng-click="quxiao()">取消</button>
+		<div style="padding: .20rem;">
+			<button type="button" id="btn2" class="btn btn-success" ng-click="onLine()">立即上线</button>
+			<button type="button" class="btn btn-success" ng-click="save()">存为草稿</button>
+			<button type="button" style="float: right;" class="btn btn-default" ng-click="cancel()">取消</button>
 		</div>
 	</form>
-	<!-- 图片上传 -->
-	<div class="row">
-		<div class="col-md-3">
-			<input type="file" nv-file-select="" uploader="uploader" class="scfile"/>
-		</div>
-		<div class="col-md-9" style="margin-bottom: 40px">
-			<table class="table">
-				<thead>
-					<tr>
-						<th width="50%">名称</th>
-						<th ng-show="uploader.isHTML5">文件大小</th>
-						<th ng-show="uploader.isHTML5">进度</th>
-						<th>状态</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in uploader.queue">
-						<td><strong>{{ item.file.name }}</strong></td>
-						<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-						<td ng-show="uploader.isHTML5">
-							<div class="progress" style="margin-bottom: 0;">
-								<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-							</div>
-						</td>
-						<td class="text-center">
-							<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-							<span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-							<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-						</td>
-						<td nowrap>
-							<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-								<span class="glyphicon glyphicon-upload"></span> 上传
-							</button>
-							<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-								<span class="glyphicon glyphicon-trash"></span> 删除
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
 </div>
 
 

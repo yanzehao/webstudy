@@ -187,5 +187,7 @@ a, a:hover {
     border-top: none;
     min-height: 2rem;
     background: #ffffff; }
+  .detail .w-e-text {
+    min-height: 2rem; }
 
 /*# sourceMappingURL=index.css.map */

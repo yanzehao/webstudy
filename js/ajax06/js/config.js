@@ -1,5 +1,5 @@
 var app = angular.module('app', ['ui.router','ui.bootstrap','ngAnimate','ngTouch','ngMessages','angularFileUpload']);
-// ["ui.router", "ui.bootstrap", "ngFileUpload", "ngAnimate", "ngSanitize","ng.ueditor","ngMessages"]
+// ["ui.router", "ui.bootstrap", "ngFileUpload", "ngAnimate", "ngSanitize","ng.ueditor","ngMessages"] 'ngAnimate', 
 app.config(function ($stateProvider,$urlRouterProvider){
   $urlRouterProvider.otherwise('/login');
   $stateProvider
@@ -17,7 +17,7 @@ app.config(function ($stateProvider,$urlRouterProvider){
     templateUrl:'./html/list.html',
   })
   .state('dashboard.detail',{
-    url:'/detail',
+    url:'/detail?id',
     templateUrl:'./html/detail.html',
   });
 });

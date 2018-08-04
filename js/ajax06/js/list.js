@@ -25,13 +25,12 @@ app.filter("statu",function () {
 })
 
 // 列表页控制器
-app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
-
+app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
   // 请求数据
+  console.log($stateParams);
   $http({
     method: 'get',
     url: '/carrots-admin-ajax/a/article/search',
-    
     //params属性将输入框的值以键值对的形式传给服务器
     params: {
       page:     $stateParams.page,
@@ -40,37 +39,167 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
       author:   $stateParams.author,
       startAt:  $stateParams.startAt,
       endAt:    $stateParams.endAt,
-      status:   $stateParams.status,
+      status:   $stateParams.statu,
       type:     $stateParams.type,
     },
+    responseType: "json"
   }).then(function (xhr) {
     console.log(xhr);
     $scope.title       = $stateParams.title;
     $scope.author      = $stateParams.author;
     $scope.dt1         = $stateParams.startAt;
     $scope.dt2         = $stateParams.endAt;
-    $scope.a           = $stateParams.status;
-    $scope.b           = $stateParams.type;
+    $scope.statu       = $stateParams.status;
+    $scope.type        = $stateParams.type;
     $scope.currentPage = $stateParams.page;
     $scope.size        = xhr.data.data.size;
     $scope.total       = xhr.data.data.total;
-    $scope.records     = xhr.data.data.articleList;
+    $scope.lists       = xhr.data.data.articleList;
     $scope.maxSize     = 5;
-    
-    //选择状态
-    $scope.a_status = [
-      {status: "1",draft: "草稿"},
-      {status: "2",draft: "上线"}
-    ]
-
-    //选择类型
-    $scope.b_type = [
-      {type: "0", online: "首页banner"},
-      {type: "1", online: "找职位banner"},
-      {type: "2", online: "找精英banner"},
-      {type: "3", online: "行业大图"}
-    ]
+    if($scope.lists.length==0){
+      $('#backResult').text('暂无数据')
+    }
   })
+  
+  //选择状态
+  $scope.status = [
+    {id: " ",label: "全部"},
+    {id: "1",label: "草稿"},
+    {id: "2",label: "上线"}
+  ]
+  // 默认状态显示全部
+  $scope.statu = $scope.status[0].id;
+  
+  //选择类型
+  $scope.types = [
+    {id: " ", label: "全部"},
+    {id: "0", label: "首页banner"},
+    {id: "1", label: "找职位banner"},
+    {id: "2", label: "找精英banner"},
+    {id: "3", label: "行业大图"}
+  ]
+  //默认状态选择全部
+  $scope.type = $scope.types[0].id;
+
+  //上下线文字渲染
+  $scope.online = function(){
+    if(this.list.status === 1){
+      return "上线"
+    }
+    else {
+      return "下线"
+    }
+  }
+
+  //点击事件改变上下线的状态
+  $scope.goline = function (id) {
+    var id = this.list.id;
+    // 草稿改上线
+    if (this.list.status === 1) {
+      bootbox.confirm({
+        closeButton: false,
+        title: "<p class='text-info'>操作提示</p>",
+        message: "<p class='text-info f-tac'>上线后该图片将在轮播banner中展示。</p> <br> <h4 class='text-danger f-tac'>是否执行上线操作</h4>",
+        buttons: {
+          cancel: {
+            label: '取消'
+          },
+          confirm: {
+            label: '确认'
+          }
+        },
+        callback: function (result) {
+          if(result){
+            $http({
+              method: 'put',
+              url: '/carrots-admin-ajax/a/u/article/status',
+              params: {
+                id: id,
+                status: 2
+              }
+            }).then(function () {
+              $state.go($state.current, {}, {
+                reload: true
+              })
+            })
+          }
+        }
+      })
+    }
+    // 上线改草稿 
+    else{
+      bootbox.confirm({
+        closeButton: false,
+        title: "<p class='text-info'>操作提示</p>",
+        message: "<p class='text-info f-tac'>下线后该图片将不展示在轮播banner中。</p> <br> <h4 class='text-danger f-tac'>是否执行下线操作</h4>",
+        buttons: {
+          cancel: {
+            label: '取消'
+          },
+          confirm: {
+            label: '确认'
+          }
+        },
+        callback: function (result) {
+          if(result){
+            $http({
+              method: 'put',
+              url: '/carrots-admin-ajax/a/u/article/status',
+              params: {
+                id: id,
+                status: 1
+              }
+            }).then(function () {
+              $state.go($state.current, {}, {
+                reload: true
+              })
+            })
+          }
+        }
+      })
+    }
+  }
+
+  //编辑
+  $scope.goedit = function(id){
+    var id = this.list.id
+    console.log(id);
+    $state.go("dashboard.detail",{
+      "id": id
+    })
+  }
+
+  //删除按钮确认框
+  $scope.delete = function(){
+    var id = this.list.id
+    bootbox.confirm({
+      closeButton: false,
+      title: "<p class='text-info'>操作提示</p>",
+      message: "<p class='text-info f-tac'>删除后该Articler图将直接下架并在本地删除</p> <br> <h4 class='text-danger f-tac'>你确定要执行删除操作吗?</h4>",
+      buttons: {
+        cancel: {
+          label: '取消'
+        },
+        confirm: {
+          label: '确认'
+        }
+      },
+      callback: function (result) {
+        // console.log('This was logged in the callback: ' + result);
+        if(result){
+          $http({
+            method: 'delete',
+            url: '/carrots-admin-ajax/a/u/article/' + id,
+          }).then(function (res) {
+            console.log(res);
+            $state.go($state.current, {}, {
+              reload: true
+            })
+          })
+        }
+      }
+    });
+  }
 
   //点击分页获取page数据
   $scope.pagechange = function () {
@@ -92,17 +221,15 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
     })
   }
 
-
   //头部按条件搜索
   $scope.search = function() {
-
     $state.go ("dashboard.list",{
       title   :$scope.title,
       author  :$scope.author,
       startAt :$scope.dt1,
       endAt   :$scope.dt2,
-      status  :$scope.a,
-      type    :$scope.b,
+      status  :$scope.statu,
+      type    :$scope.type,
     },{
       reload:true
     })
@@ -125,9 +252,9 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
 
   // 新增页
   $scope.add = function() {
-    $state.go ("dashboard.detail");
+    $state.go ("dashboard.detail")
   }
-
+  
   //日期选择器
   $scope.today = function() {
     $scope.dt = new Date();
@@ -153,7 +280,6 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
     startingDay: 1
   };
 
-
   // Disable weekend selection
   function disabled(data) {
     var date = data.date,
@@ -165,7 +291,6 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
     $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
     $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
   };
-
   $scope.toggleMin();
 
   $scope.open1 = function() {
@@ -175,22 +300,18 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
   $scope.open2 = function() {
     $scope.popup2.opened = true;
   };
-
   $scope.setDate = function(year, month, day) {
     $scope.dt1 = new Date(year, month, day);
     $scope.dt2 = new Date(year, month, day);
   };
-
   $scope.altInputFormats = ['M!/d!/yyyy'];
 
   $scope.popup1 = {
     opened: false
   };
-
   $scope.popup2 = {
     opened: false
   };
-
   var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   var afterTomorrow = new Date();
@@ -211,10 +332,8 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
       mode = data.mode;
     if (mode === 'day') {
       var dayToCheck = new Date(date).setHours(0,0,0,0);
-
       for (var i = 0; i < $scope.events.length; i++) {
         var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
         if (dayToCheck === currentDay) {
           return $scope.events[i].status;
         }
@@ -223,3 +342,6 @@ app.controller("listctrl", function ($scope, $http, $state,$log,$stateParams,) {
     return '';
   }
 })
+
+
+

@@ -41,15 +41,13 @@
       <!-- 状态选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">状态</label>
-        <select ng-options="x.status as x.draft for x in a_status" class="form-control" ng-model="a">
-          <option value="">全部</option>
+        <select ng-options="value.id as value.label for value in status" class="form-control" ng-model="statu">
         </select>
       </div>
       <!-- 类型选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">类型</label>
-        <select ng-options="x.type as x.online for x in b_type" class="form-control" ng-model="b">
-          <option value="">全部</option>
+        <select ng-options="value.id as value.label for value in types" class="form-control" ng-model="type">
         </select>
       </div>
       <button type="button" class="btn btn-danger" ng-click="empty()">清空</button>
@@ -74,23 +72,24 @@
         <th>状态</th>
         <th style="width: 150px;">操作</th>
       </tr>
-      <tr ng-repeat="x in records">
-        <th ng-bind="$index+1">                                                     </th>
-        <th ng-model="img"> <img src="{{x.img}}" alt="图片未上传" width="80px"> </th>
-        <th ng-model="title">     {{x.title}}                                  </th>
-        <th ng-model="type">      {{x.type | Changetype}}                      </th>
-        <th ng-model="author">    {{x.author}}                                 </th>
-        <th ng-model="createAt">  {{x.createAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
-        <th ng-model="updateAt">  {{x.updateAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
-        <th ng-model="status">    {{x.status | statu}}                         </th>
+      <tr ng-repeat="list in lists">
+        <th ng-bind="$index+1">                                                   </th>
+        <th ng-model="img"><img src="{{list.img}}" alt="图片未上传" width="80px">  </th>
+        <th ng-model="title">     {{list.title}}                                  </th>
+        <th ng-model="type">      {{list.type | Changetype}}                      </th>
+        <th ng-model="author">    {{list.author}}                                 </th>
+        <th ng-model="createAt">  {{list.createAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
+        <th ng-model="updateAt">  {{list.updateAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
+        <th ng-model="status">    {{list.status | statu}}                         </th>
         <th style="width: 150px;">
-          <button type="button" class="btn btn-default btn-xs">上线</button>        
-          <button type="button" class="btn btn-default btn-xs">编辑</button>        
-          <button type="button" class="btn btn-default btn-xs">删除</button>        
+          <button type="button" class="btn btn-default btn-success btn-xs" ng-click="goline()">{{online()}}</button> 
+          <button type="button" class="btn btn-default btn-primary btn-xs" ng-click="goedit()">编辑</button>        
+          <button type="button" class="btn btn-default btn-danger btn-xs" ng-click="delete('sm')">删除</button>        
         </th>
       </tr>    
     </table>
   </div>
+  <h3 id="backResult"></h3>
   <!-- 分页 -->
   <div class="pages">
     <div>
@@ -114,12 +113,16 @@
       boundary-link-numbers = "false">
     </uib-pagination>
     <div>
-      <p>去第</p> 
+      <p style="text-align: center" class="sadd">去第</p> 
       <input type="text" class="form-control input-sm" ng-model="pagego" value="{{pagego}}">
       <p>页</p> 
     </div>
     <button ng-click="sizego()" class="btn btn-default ">确认</button>
   </div>
+  <!-- 模态框 -->
+
   <div ui-view=""></div>
 </div>
+
+
 
