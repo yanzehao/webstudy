@@ -1,5 +1,5 @@
 //释义服务器返回的字段（type类型）
-app.filter("Changetype",function () {
+app.filter("typeChange",function () {
   return function (inputtype) {
     var changed = "";
     switch (inputtype){
@@ -13,7 +13,7 @@ app.filter("Changetype",function () {
 })
 
 //释义服务器返回的字段（status类型）
-app.filter("statu",function () {
+app.filter("statuChange",function () {
   return function (inputData) {
     var changed = "";
     switch (inputData){
@@ -28,6 +28,35 @@ app.filter("statu",function () {
 app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
   // 请求数据
   console.log($stateParams);
+
+  // //搜索按钮
+  // $scope.search = function () {
+  //   if (typeof $scope.startDat == "object") {
+  //     $scope.startDat = $scope.startDat.getTime();
+  //   }
+  //   if (typeof $scope.endDat == "undefined") {
+  //     $scope.stateGo();
+  //   } else {
+  //       if (typeof $scope.endDat == "object") {
+  //         $scope.endDat = $scope.endDat.getTime() + 86399999;
+  //       }
+  //       $scope.currentPage = 1;
+  //       $state.go(".", {
+  //         "title": $scope.title,
+  //         "author": $scope.author,
+  //         "startAt": $scope.startDat,
+  //         "endAt": $scope.endDat,
+  //         "type": $scope.typeNum,
+  //         "status": $scope.stateNum,
+  //         "page": $scope.currentPage,
+  //         "size": $scope.showPages
+  //       }, {
+  //         reload: true
+  //       });
+  //   }
+  //   // $scope.stateGo();
+  // };
+  
   $http({
     method: 'get',
     url: '/carrots-admin-ajax/a/article/search',
@@ -39,7 +68,7 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
       author:   $stateParams.author,
       startAt:  $stateParams.startAt,
       endAt:    $stateParams.endAt,
-      status:   $stateParams.statu,
+      status:   $stateParams.status,
       type:     $stateParams.type,
     },
     responseType: "json"
@@ -49,12 +78,12 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
     $scope.author      = $stateParams.author;
     $scope.dt1         = $stateParams.startAt;
     $scope.dt2         = $stateParams.endAt;
-    $scope.statu       = $stateParams.status;
+    $scope.status      = $stateParams.status;
     $scope.type        = $stateParams.type;
     $scope.currentPage = $stateParams.page;
     $scope.size        = xhr.data.data.size;
     $scope.total       = xhr.data.data.total;
-    $scope.lists       = xhr.data.data.articleList;
+    $scope.lists     = xhr.data.data.articleList;
     $scope.maxSize     = 5;
     if($scope.lists.length==0){
       $('#backResult').text('暂无数据')
@@ -62,25 +91,26 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
   })
   
   //选择状态
-  $scope.status = [
-    {id: " ",label: "全部"},
+  $scope.statusAll = [
+    {id:null,label: "全部"},
     {id: "1",label: "草稿"},
     {id: "2",label: "上线"}
   ]
   // 默认状态显示全部
-  $scope.statu = $scope.status[0].id;
+  $scope.status = $scope.statusAll[0].id;
   
   //选择类型
-  $scope.types = [
-    {id: " ", label: "全部"},
+  $scope.typeAll = [
+    {id: null,label: "全部"},
     {id: "0", label: "首页banner"},
     {id: "1", label: "找职位banner"},
     {id: "2", label: "找精英banner"},
     {id: "3", label: "行业大图"}
   ]
   //默认状态选择全部
-  $scope.type = $scope.types[0].id;
+  $scope.type = $scope.typeAll[0].id;
 
+  
   //上下线文字渲染
   $scope.online = function(){
     if(this.list.status === 1){
@@ -99,7 +129,7 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
       bootbox.confirm({
         closeButton: false,
         title: "<p class='text-info'>操作提示</p>",
-        message: "<p class='text-info f-tac'>上线后该图片将在轮播banner中展示。</p> <br> <h4 class='text-danger f-tac'>是否执行上线操作</h4>",
+        message: "<p style='text-align: center;color: #999999'>上线后该图片将在轮播banner中展示。</p> <br> <h4 class='text-danger' style='text-align: center'>是否执行上线操作</h4>",
         buttons: {
           cancel: {
             label: '取消'
@@ -131,7 +161,7 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
       bootbox.confirm({
         closeButton: false,
         title: "<p class='text-info'>操作提示</p>",
-        message: "<p class='text-info f-tac'>下线后该图片将不展示在轮播banner中。</p> <br> <h4 class='text-danger f-tac'>是否执行下线操作</h4>",
+        message: "<p style='text-align: center;color: #999999'>下线后该图片将不展示在轮播banner中。</p> <br> <h4 class='text-danger' style='text-align: center'>是否执行下线操作</h4>",
         buttons: {
           cancel: {
             label: '取消'
@@ -164,6 +194,7 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
   $scope.goedit = function(id){
     var id = this.list.id
     console.log(id);
+    
     $state.go("dashboard.detail",{
       "id": id
     })
@@ -175,7 +206,7 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
     bootbox.confirm({
       closeButton: false,
       title: "<p class='text-info'>操作提示</p>",
-      message: "<p class='text-info f-tac'>删除后该Articler图将直接下架并在本地删除</p> <br> <h4 class='text-danger f-tac'>你确定要执行删除操作吗?</h4>",
+      message: "<p class='text-info' style='text-align: center'>删除后该Articler图将直接下架并在本地删除</p> <br> <h4 class='text-danger' style='text-align: center'>你确定要执行删除操作吗?</h4>",
       buttons: {
         cancel: {
           label: '取消'
@@ -228,8 +259,8 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
       author  :$scope.author,
       startAt :$scope.dt1,
       endAt   :$scope.dt2,
-      status  :$scope.statu,
-      type    :$scope.type,
+      status  :$scope.status,
+      type    :$scope.status,
     },{
       reload:true
     })
@@ -291,6 +322,7 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
     $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
     $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
   };
+
   $scope.toggleMin();
 
   $scope.open1 = function() {
@@ -300,18 +332,22 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
   $scope.open2 = function() {
     $scope.popup2.opened = true;
   };
+
   $scope.setDate = function(year, month, day) {
     $scope.dt1 = new Date(year, month, day);
     $scope.dt2 = new Date(year, month, day);
   };
+
   $scope.altInputFormats = ['M!/d!/yyyy'];
 
   $scope.popup1 = {
     opened: false
   };
+
   $scope.popup2 = {
     opened: false
   };
+
   var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   var afterTomorrow = new Date();
@@ -332,8 +368,10 @@ app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
       mode = data.mode;
     if (mode === 'day') {
       var dayToCheck = new Date(date).setHours(0,0,0,0);
+
       for (var i = 0; i < $scope.events.length; i++) {
         var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
         if (dayToCheck === currentDay) {
           return $scope.events[i].status;
         }

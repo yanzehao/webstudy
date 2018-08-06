@@ -41,13 +41,17 @@
       <!-- 状态选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">状态</label>
-        <select ng-options="value.id as value.label for value in status" class="form-control" ng-model="statu">
+        <select ng-options="value.id as value.label for value in statusAll" 
+          class="form-control" 
+          ng-model="status">
         </select>
       </div>
       <!-- 类型选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">类型</label>
-        <select ng-options="value.id as value.label for value in types" class="form-control" ng-model="type">
+        <select ng-options="value.id as value.label for value in typeAll" 
+          class="form-control" 
+          ng-model="type">
         </select>
       </div>
       <button type="button" class="btn btn-danger" ng-click="empty()">清空</button>
@@ -76,11 +80,11 @@
         <th ng-bind="$index+1">                                                   </th>
         <th ng-model="img"><img src="{{list.img}}" alt="图片未上传" width="80px">  </th>
         <th ng-model="title">     {{list.title}}                                  </th>
-        <th ng-model="type">      {{list.type | Changetype}}                      </th>
+        <th ng-model="type">      {{list.type | typeChange}}                      </th>
         <th ng-model="author">    {{list.author}}                                 </th>
         <th ng-model="createAt">  {{list.createAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
         <th ng-model="updateAt">  {{list.updateAt | date:'yyyy-MM-dd HH:mm:ss'}}  </th>
-        <th ng-model="status">    {{list.status | statu}}                         </th>
+        <th ng-model="status">    {{list.status | statuChange}}                   </th>
         <th style="width: 150px;">
           <button type="button" class="btn btn-default btn-success btn-xs" ng-click="goline()">{{online()}}</button> 
           <button type="button" class="btn btn-default btn-primary btn-xs" ng-click="goedit()">编辑</button>        

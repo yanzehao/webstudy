@@ -2,7 +2,7 @@
 app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stateParams,) {
   //选择类型
   $scope.types = [
-    {id: " ", label: "请选择"},
+    {id: null, label: "请选择"},
     {id: "0", label: "首页banner"},
     {id: "1", label: "找职位banner"},
     {id: "2", label: "找精英banner"},
@@ -13,7 +13,7 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
   
   //行业大图分类
   $scope.industrys = [
-    {id: " ", label: "请选择"},
+    {id: null, label: "请选择"},
     {id: "0", label: "移动互联网"},
     {id: "1", label: "电子商务"},
     {id: "2", label: "企业服务"},
@@ -22,9 +22,10 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
     {id: "5", label: "金融"},
     {id: "6", label: "游戏"},
   ]
-  //默认显示为全部
+  //默认显示:请选择
   $scope.industry = $scope.industrys[0].id;
-  
+  console.log(!$scope.types[0].id);
+
   // 取消按钮
   $scope.cancel = function() {
     $state.go("dashboard.list");
@@ -34,7 +35,8 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
   var E = window.wangEditor;
   var editor1 = new E('#div1', '#div2');
   // 使用 base64 保存图片
-  editor1.customConfig.uploadImgShowBase64 = true   
+  editor1.customConfig.uploadImgShowBase64 = true,
+  editor1.customConfig.zIndex = 1,
   editor1.create();
   //获取内容 
   document.getElementById('btn2').addEventListener('click', function (edtext) {
@@ -200,12 +202,12 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
       url: '/carrots-admin-ajax/a/u/article/',
       params: {
         title: $scope.title,
-        type: $scope.b,
+        type: $scope.type,
         status: 1,
         img: $scope.imgUrl,
         content: editor1.txt.text(),
         url: $scope.link,
-        // industry: $scope.industry
+        industry: $scope.industry
       },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -217,4 +219,9 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
       }
     })
   }
+
+  // 表单验证
+  $scope.titleChange = false;
+  $scope.urlChange = false;
+  
 });

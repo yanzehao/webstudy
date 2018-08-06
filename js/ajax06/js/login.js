@@ -1,3 +1,34 @@
+
+app.controller("loginctrl", function ($scope, $http, $state) {
+  $scope.subclick = function () {
+    $http({
+      method: 'post',
+      url: '/carrots-admin-ajax/a/login',
+      //params属性将输入框的值以键值对的形式传给服务器
+      params: {
+        name: $scope.name,  
+        pwd: $scope.pass,
+      },
+      responseType: "json",
+      //编码格式
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+    }).then(function (xhr) {
+      console.log(xhr.data);
+      if (xhr.data.code === 0) {
+        $state.go("dashboard");
+      } else {
+        $scope.infor = true
+        $scope.info = xhr.data.message;
+      }
+    })
+  }
+  $scope.unameChange = false;
+  
+})
+
+
 //  //文档就绪事件
 //  $(function(){
 //    $("button").click(function(){
@@ -71,30 +102,6 @@
 //      }   
 //    });
 //  })
-app.controller("loginctrl", function ($scope, $http, $state) {
-  $scope.subclick = function () {
-    $http({
-      method: 'post',
-      url: '/carrots-admin-ajax/a/login',
-      //params属性将输入框的值以键值对的形式传给服务器
-      params: {
-        name: $scope.name,  
-        pwd: $scope.pass,
-      },
-      //编码格式
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-    }).then(function (xhr) {
-      console.log(xhr.data);
-      if (xhr.data.code === 0) {
-        $state.go("dashboard");
-      } else {
-        $scope.info = xhr.data.message;
-      }
-    })
-  }
-})
 
 
 

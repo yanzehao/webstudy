@@ -1,36 +1,85 @@
 <div class="detail" ng-controller="detailctrl">
-  <form class="form-inline" >
+  <form class="form-inline" name="detailForm" novalidate>
 		<div class="ttop">
 			<span>{{editOrAdd}}</span>
 		</div>
     <div class="form-group lain">
-      <label for="exampleInputName2">标题名称</label>
-      <input type="text" class="form-control" id="exampleInputName2" size="60" ng-model="title">
+			<label for="exampleInputName2">标题名称</label>
+			<input type="text" 
+				name="titleName" 
+				id="exampleInputName2"
+				class="form-control"  
+				ng-model="title" 
+				size="60" 
+				ng-blur="titleChange=true" 
+				ng-focus="titleChange=false"
+				required />
+			<span class="error text-danger mg5" ng-show="detailForm.titleName.$error.required && titleChange">*标题不能为空</span>
 		</div>
 		<br>
 		<div class="form-group lain">
       <label for="exampleInputEmail2">类型</label>
-      <select name="industry" ng-options="value.id as value.label for value in types" class="form-control" ng-model="type" >
-      </select>
+			<select name="typeName" 
+				ng-options="value.id as value.label for value in types" 
+				class="form-control" 
+				ng-model="type" 
+				required >
+			</select>
+			<span class="error text-danger mg5" ng-show="type == null">*请选择类型</span>
 		</div>
 		<div class="form-group lain">
 			<label for="exampleInputEmail2" ng-show="type==3">行业</label>
-			<select name="industry" ng-show="type==3" ng-options="value.id as value.label for value in industrys" class="form-control" ng-model="industry">
+			<select name="industryName" 
+				ng-show="type==3" 
+				ng-options="value.id as value.label for value in industrys" 
+				class="form-control" 
+				ng-model="industry"
+				required>
 			</select>
+			<span class="error text-danger mg5" ng-show="industry==null&&type==3">*请选择行业</span>
 		</div>
 		<br>
 		<!-- 富文本编辑器 -->
-		<label for="exampleInputEmail2">说明</label>
-    <div id="div1" class="toolbar" style="flex-flow: wrap;"></div>
-		<div id="div2" class="bodytext"></div>
+		<div class="form-group lain">
+			<label for="exampleInputEmail2">说明</label>
+    	<div id="div1" class="toolbar" style="flex-flow: wrap;"></div>
+			<div id="div2" class="bodytext"></div>
+		</div>
 		<!-- 跳转链接 -->
 		<div class="form-group lain">
+				<!-- <input type="url" name="homepage" ng-model="user.facebook_url" /> -->
       <label for="exampleInputName2">跳转链接</label>
-      <input type="text" ng-model="link" class="form-control" id="exampleInputName2" size="60">
+			<input type="url"
+				id="exampleInputName2" 
+				class="form-control" 
+				name="urlName" 
+				ng-model="link" 
+				size="60"
+				ng-blur="urlChange=true" 
+				ng-focus="urlChange=false"
+				required />
+			<span class="error text-danger mg5" ng-show="detailForm.urlName.$error.required && urlChange">*地址不能为空</span>
+			<span class="error text-danger mg5" ng-show="detailForm.urlName.$error.url && urlChange">*请输入正确的URL地址</span>
 		</div>
+		<br>
 		<!-- 图片上传插件 -->
 		<!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-		<input type="file" ng-if="uploader" nv-file-select="" uploader="uploader" />
+		<div class="form-group lain">
+			<label for="exampleInputName2">配图</label>
+			<button type="button" class="btn btn-info f-pr">选择文件
+				<input type="file" 
+					class="inputbtn"
+					name="imgName"
+					ng-if="uploader" 
+					nv-file-select="" 
+					uploader="uploader"
+					required />
+			</button>
+		</div>
+			<!-- <div ng-messages="detailForm.name.$error">
+				<p class="text-danger mg5" ng-message="required">*必填项</p>
+			</div> -->
+			<!-- <p class="error text-danger mg5" ng-show="detailForm.name.$error.required">*必填项</p> -->
 		<table class="table">
 			<thead>
 				<tr>
@@ -78,8 +127,8 @@
 		
 		<br>
 		<div style="padding: .20rem;">
-			<button type="button" id="btn2" class="btn btn-success" ng-click="onLine()">立即上线</button>
-			<button type="button" class="btn btn-success" ng-click="save()">存为草稿</button>
+			<button type="button" id="btn2" class="btn btn-success" ng-disabled="detailForm.$invalid" ng-click="onLine()">立即上线</button>
+			<button type="button" class="btn btn-success" ng-disabled="detailForm.$invalid" ng-click="save()">存为草稿</button>
 			<button type="button" style="float: right;" class="btn btn-default" ng-click="cancel()">取消</button>
 		</div>
 	</form>
