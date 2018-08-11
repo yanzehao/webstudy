@@ -4,36 +4,38 @@
     <form class="form-inline">
       <div class="form-group lain">
         <label for="exampleInputName2">标题</label>
-        <input type="text" class="form-control" id="exampleInputName2" ng-model="title" value="{{title}}">
+        <input type="text" class="form-control" id="exampleInputName2" ng-model="title">
       </div>
       <div class="form-group lain">
         <label for="exampleInputEmail2">创建者</label>
-        <input type="text" class="form-control" id="exampleInputName2" ng-model="author" value="{{author}}">
+        <input type="text" class="form-control" id="exampleInputName2" ng-model="author">
       </div>
       <!-- 日期选择器 -->
       <div class="form-group lain">
-        <label for="exampleInputEmail2">创建时间</label>
-        <input ng-click="open1()" type="text" class="form-control" ng-model="dt1"
-          value="{{dt1 | date:'sss'}}"
+        <label for="exampleInputEmail2">修改时间</label>
+        <input type="text" 
+          ng-click="open1()" 
+          class="form-control" 
+          ng-model="startAt"
           uib-datepicker-popup  
-          is-open              = "popup1.opened" 
-          datepicker-options   = "dateOptions" 
-          ng-required          = "true" 
-          clear-text           = "清空"
-          current-text         = "今天"
-          close-text           = "关闭" 
-          datepicker-options   ="{maxDate:(dt2)}"
-          alt-input-formats    = "altInputFormats" />
+          is-open            = "popup1.opened" 
+          datepicker-options = "dateOptions" 
+          ng-required        = "true"
+          clear-text         = "清空"
+          current-text       = "今天"
+          close-text         = "关闭"
+          alt-input-formats  = "altInputFormats" />
       </div>
+      ——
       <div class="form-group lain">
-        <label for="exampleInputEmail2">——</label>
-        <input ng-click="open2()" type="text" class="form-control" ng-model="dt2" 
-          value="{{dt2 | date:'sss'}}"
+        <input type="text" 
+          ng-click="open2()" 
+          class="form-control" 
+          ng-model="endAt" 
           uib-datepicker-popup  
           is-open              = "popup2.opened" 
           datepicker-options   = "dateOptions" 
           ng-required          = "true" 
-          datepicker-options   = "{minDate:(dt1)}"
           clear-text           = "清空"
           current-text         = "今天"
           close-text           = "关闭" />
@@ -41,17 +43,21 @@
       <!-- 状态选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">状态</label>
-        <select ng-options="value.id as value.label for value in statusAll" 
+        <select name="statusName"
+          ng-options="value.id as value.label for value in statusAll" 
           class="form-control" 
           ng-model="status">
+          <option value="">全部</option>
         </select>
       </div>
       <!-- 类型选择 -->
       <div class="form-group lain">
         <label for="exampleInputEmail2">类型</label>
-        <select ng-options="value.id as value.label for value in typeAll" 
+        <select name="typeName"
+          ng-options="value.id as value.label for value in typeAll" 
           class="form-control" 
           ng-model="type">
+          <option value="">全部</option>
         </select>
       </div>
       <button type="button" class="btn btn-danger" ng-click="empty()">清空</button>
@@ -98,7 +104,7 @@
   <div class="pages">
     <div>
       <span>每页显示</span> 
-      <input type="text" class="form-control input-sm" ng-model="size" value="{{size}}" > 
+      <input type="text" class="form-control input-sm" ng-model="size"> 
       <span>页</span>
     </div>
     <uib-pagination 
@@ -118,7 +124,7 @@
     </uib-pagination>
     <div>
       <p style="text-align: center" class="sadd">去第</p> 
-      <input type="text" class="form-control input-sm" ng-model="pagego" value="{{pagego}}">
+      <input type="text" class="form-control input-sm" ng-model="page">
       <p>页</p> 
     </div>
     <button ng-click="sizego()" class="btn btn-default ">确认</button>

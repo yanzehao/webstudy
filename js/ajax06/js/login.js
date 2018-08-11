@@ -16,6 +16,7 @@ app.controller("loginctrl", function ($scope, $http, $state) {
       },
     }).then(function (xhr) {
       console.log(xhr.data);
+      sessionStorage.setItem('loginSuccess',xhr.data.code)
       if (xhr.data.code === 0) {
         $state.go("dashboard");
       } else {

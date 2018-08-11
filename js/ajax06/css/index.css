@@ -60,7 +60,7 @@ a, a:hover {
   width: 100%;
   height: .70rem;
   background: #212121;
-  z-index: 9999999999999999999; }
+  z-index: 9; }
   .dashboard > header h3 {
     line-height: .70rem;
     margin: 0;
@@ -82,12 +82,13 @@ a, a:hover {
   background: #3d3d3d; }
   .dashboard > .board .panel-body {
     padding: 0; }
-  .dashboard > .board p {
+  .dashboard > .board .sonItem {
+    display: block;
     font-size: 16px;
     text-align: center;
     line-height: .40rem;
     color: #ffffff; }
-    .dashboard > .board p:hover {
+    .dashboard > .board .sonItem:focus {
       background: #c33636; }
   .dashboard > .board .panel, .dashboard > .board .ng-scope, .dashboard > .board .ng-isolate-scope, .dashboard > .board .panel-default {
     margin: 0;
@@ -103,6 +104,9 @@ a, a:hover {
   .dashboard > .board .pull-right {
     border: none;
     background: #3d3d3d; }
+  .dashboard > .board .headText {
+    background: #3d3d3d;
+    border: none; }
 .dashboard h1 {
   position: absolute;
   top: .70rem;
@@ -180,6 +184,7 @@ a, a:hover {
     border-top-right-radius: .05rem;
     border-top-left-radius: .05rem;
     border: 1px solid #999999;
+    flex-flow: wrap;
     background: #eeeeee; }
   .detail .bodytext {
     margin: 0 .55rem;
@@ -187,6 +192,8 @@ a, a:hover {
     border-bottom-left-radius: .05rem;
     border: 1px solid #999999;
     border-top: none;
+    word-break: break-all;
+    flex-flow: wrap;
     min-height: 2rem;
     background: #ffffff; }
   .detail .w-e-text {

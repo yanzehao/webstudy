@@ -5,36 +5,33 @@
     <div>
       <a>管理员</a>
       <a>admin</a>
-      <a href="http://www.js6.com/#!/login"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
+      <a ><span ng-click="logout()" class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
     </div>
   </header>
   <!-- 风琴菜单 -->
-  <uib-accordion close-others="true" class="board" >
-    <div uib-accordion-group is-open="status.isFirstOpen" ng-repeat="group in groups">
-      <uib-accordion-heading>
-        {{heading}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-right': !status.isFirstOpen}"></i>
+  <uib-accordion close-others="false" class="board" >
+    <div uib-accordion-group 
+      ng-repeat="group in groups" 
+      is-open="group.open"
+      >
+      <uib-accordion-heading >
+        <span class="headText" ng-click="clickOpen($index)">{{group.title}}</span>
+        <i class="pull-right glyphicon" ng-click="clickOpen($index)"
+          ng-class="{'glyphicon-chevron-down'  :  group.open, 
+                     'glyphicon-chevron-right' : !group.open}">
+        </i>
       </uib-accordion-heading>
-      <p>公司信息</p>
-      <p>职位信息</p>
-    </div>                          
-    <div uib-accordion-group is-open="status.isSecondOpen" ng-click="secondOpen">
-      <uib-accordion-heading>
-        内容管理<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isSecondOpen, 'glyphicon-chevron-right': !status.isSecondOpen}"></i>
-      </uib-accordion-heading>
-      <p ui-sref=".list"><a href="">Article管理</a></p> 
-    </div>
-    <div uib-accordion-group is-open="status.isThirdOpen" ng-click="thirdOpen">
-      <uib-accordion-heading>
-        后台管理<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isThirdOpen, 'glyphicon-chevron-right': !status.isThirdOpen}"></i>
-      </uib-accordion-heading>
-      <p>账号管理</p>
-      <p>角色管理</p> 
-      <p>修改密码</p> 
-      <p>模块管理</p> 
-    </div>
+      <a class="sonItem f_csp"
+         href=""
+         ng-repeat="item in group.content" 
+         ui-sref="{{item.url}}">
+         {{item.list}}
+      </a>
+    </div>                
   </uib-accordion>
+  
   <!-- 欢迎文字 -->
-  <h1>welcome</h1>
+  <h1 style="text-align: left">welcome</h1>
   <!-- 列表项视口 -->
   <div ui-view=""></div>
 </div> 
