@@ -41,6 +41,7 @@ app.controller('AccordionCtrl', function ($scope,$http,$state) {
       console.log(res);
       if (res.data.code === 0) {
         $state.go('login');
+        sessionStorage.clear();
       }
     })
   }

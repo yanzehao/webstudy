@@ -31,10 +31,6 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
   editor1.customConfig.uploadImgShowBase64 = true,
   editor1.customConfig.zIndex = 1,
   editor1.create();
-  //获取内容 
-  document.getElementById('btn2').addEventListener('click', function (edtext) {
-    $scope.edtext = editor1.txt.text();
-  }, false)
   
   //图片上传插件
   var uploader = $scope.uploader = new FileUploader({
@@ -60,7 +56,6 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
 
 //---------------------------------------------------------------------------------------------
 
-  
 
   // 编辑
   if($stateParams.id){
@@ -78,7 +73,7 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
       $scope.type     = res.data.data.article.type;
       $scope.status   = res.data.data.article.status;
       $scope.industry = res.data.data.article.industry;
-      $scope.content  = res.data.data.article.content;
+      editor1.txt.html(res.data.data.article.content)
       $scope.link     = res.data.data.article.url;
       $scope.imgUrl   = res.data.data.article.img;
       $scope.createAt = res.data.data.article.createAt;
@@ -94,7 +89,7 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
           type: $scope.type,
           status: $scope.status,
           img: $scope.imgUrl,
-          content: $scope.edtext,
+          content: editor1.txt.html(),
           url: $scope.link,
           industry: $scope.industry,
           createAt: $scope.createAt,
@@ -125,7 +120,7 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
           type: $scope.type,
           status: 2,
           img: $scope.imgUrl,
-          content: $scope.edtext,
+          content: editor1.txt.html(),
           url: $scope.link,
           industry: $scope.industry
         },
@@ -150,7 +145,7 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
           type: $scope.type,
           status: 1,
           img: $scope.imgUrl,
-          content: edtext,
+          content: editor1.txt.html(),
           url: $scope.link,
           industry: $scope.industry
         },
@@ -165,15 +160,6 @@ app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stat
       })
     }
   }
-
-  // title: $scope.title,
-  // type: $scope.type,
-  // status: 2,
-  // img: $scope.imgUrl,
-  // content: $scope.edtext,
-  // url: $scope.link,
-  // industry: $scope.industry
-
 
   // 表单验证
   $scope.titleChange = false;
