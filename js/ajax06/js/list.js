@@ -25,8 +25,8 @@ app.filter("statuChange",function () {
 })
 
 // 列表页控制器
-app.controller("listctrl", function ($scope, $http, $state,$stateParams) {
-  
+app.controller("listctrl", function ($scope, $http, $state, $stateParams, $ocLazyLoad) {
+  $ocLazyLoad.load('list.js');
   //选择状态
   $scope.statusAll = [
     {id: "1",label: "草稿"},

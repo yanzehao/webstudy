@@ -1,6 +1,6 @@
 
 app.controller("loginctrl", function ($scope, $http, $state) {
-  console.log("%c欢迎来到德莱联盟", "color:blue;font-size:100px");
+  // console.log("%c 哔哩哔哩干杯组", "color:blue;font-size:60px");
   $scope.subclick = function () {
     $http({
       method: 'post',
@@ -27,5 +27,4 @@ app.controller("loginctrl", function ($scope, $http, $state) {
     })
   }
   $scope.unameChange = false;
-  
 })

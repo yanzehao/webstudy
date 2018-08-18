@@ -1,5 +1,5 @@
 
-app.controller('detailctrl', function($scope, FileUploader, $state, $http, $stateParams,) {
+app.controller('detailctrl', function($scope, FileUploader, $state, $http) {
   //选择类型
   $scope.types = [
     {id: 0, label: "首页banner"},
