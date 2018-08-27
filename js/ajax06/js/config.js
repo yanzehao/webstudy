@@ -7,7 +7,6 @@ app.config(function ($stateProvider,$urlRouterProvider,$controllerProvider){
   .state('login',{
     url:'/login',
     templateUrl:'./html/login.html',
-    controller:"loginctrl",
     resolve:{
       deps:["$ocLazyLoad",function($ocLazyLoad){
         return $ocLazyLoad.load("./js/login.js");
@@ -19,7 +18,6 @@ app.config(function ($stateProvider,$urlRouterProvider,$controllerProvider){
   .state('dashboard',{
     url:'/dashboard',
     templateUrl:'./html/dashboard.html',
-    controller:"AccordionCtrl",
     resolve:{
       deps:["$ocLazyLoad",function($ocLazyLoad){
         return $ocLazyLoad.load("./js/dashboard.js");
@@ -32,7 +30,6 @@ app.config(function ($stateProvider,$urlRouterProvider,$controllerProvider){
     //url传参
     url:'/list?page&size&title&author&startAt&endAt&status&type',
     templateUrl:'./html/list.html',
-    controller:"listctrl",
     resolve:{
       deps:["$ocLazyLoad",function($ocLazyLoad){
         return $ocLazyLoad.load("./js/list.js");
@@ -44,7 +41,6 @@ app.config(function ($stateProvider,$urlRouterProvider,$controllerProvider){
   .state('dashboard.detail',{
     url:'/detail?id',
     templateUrl:'./html/detail.html',
-    controller:"detailctrl",
     resolve:{
       deps:["$ocLazyLoad",function($ocLazyLoad){
         return $ocLazyLoad.load("./js/detail.js");
