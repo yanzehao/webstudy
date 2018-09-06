@@ -13,7 +13,7 @@ app.controller('AccordionCtrl', function ($scope,$http,$state) {
       title: '内容管理',
       open: false,
       content:[
-        {list:'Article管理',url:'dashboard.list'}
+        {list:'Article管理',url:'dashboard.list({size:20,page:1})'}
       ]
     },
     {
